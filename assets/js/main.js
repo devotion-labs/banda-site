@@ -12,7 +12,9 @@
 
   // ---------- active nav link ----------
   function initActiveNav() {
-    const nav = qs("[data-nav]");
+    // IMPORTANT: scope ao header para não apanhar outros [data-nav] dentro da página
+    const header = qs("header") || document;
+    const nav = qs("[data-nav]", header);
     if (!nav) return;
 
     const current = (location.pathname.split("/").pop() || "index.html").toLowerCase();
@@ -21,6 +23,42 @@
       a.classList.toggle("active", page === current);
     });
   }
+
+  // ---------- mobile menu ----------
+  function initMenu() {
+    const header = qs("header") || document;
+
+    const btn = qs("[data-menu-btn]", header);
+    const nav = qs("[data-nav]", header);
+    if (!btn || !nav) return;
+
+    // GUARD: evita bind duplo caso o script seja carregado 2x
+    if (btn.dataset.menuInit === "1") return;
+    btn.dataset.menuInit = "1";
+
+    const openClass = "open";
+
+    function setOpen(isOpen) {
+      nav.classList.toggle(openClass, isOpen);
+      btn.setAttribute("aria-expanded", String(isOpen));
+    }
+
+    btn.addEventListener("click", () => {
+      setOpen(!nav.classList.contains(openClass));
+    });
+
+    qsa("a", nav).forEach((a) => a.addEventListener("click", () => setOpen(false)));
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") setOpen(false);
+    });
+
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 900) setOpen(false);
+    });
+  }
+
+
 
   // ---------- YouTube thumbnails fallback (maxres -> hq -> mq) ----------
   function initThumbFallbacks() {
@@ -34,34 +72,95 @@
     });
   }
 
-  // ---------- mobile menu ----------
-  function initMenu() {
-    const btn = qs("[data-menu-btn]");
-    const nav = qs("[data-nav]");
-    if (!btn || !nav) return;
+  // ---------- carousels (swipe mobile + setas desktop) ----------
+  function initCarousels() {
+    const carousels = qsa("[data-carousel]");
+    if (!carousels.length) return;
 
-    const openClass = "open";
+    const updaters = [];
 
-    function setOpen(isOpen) {
-      nav.classList.toggle(openClass, isOpen);
-      btn.setAttribute("aria-expanded", String(isOpen));
-    }
+    carousels.forEach((carousel) => {
+      const track = qs("[data-carousel-track]", carousel);
+      const prev = qs("[data-carousel-prev]", carousel);
+      const next = qs("[data-carousel-next]", carousel);
+      const dotsW = qs("[data-carousel-dots]", carousel);
+      const items = track ? qsa(".media-carousel-item", track) : [];
 
-    btn.addEventListener("click", () => {
-      setOpen(!nav.classList.contains(openClass));
+      if (!track || !items.length) return;
+
+      // dots
+      let dots = [];
+      if (dotsW) {
+        dotsW.innerHTML = "";
+        dots = items.map((_, i) => {
+          const b = document.createElement("button");
+          b.type = "button";
+          b.className = "media-carousel-dot";
+          b.setAttribute("aria-label", `Ir para imagem ${i + 1}`);
+          b.addEventListener("click", () => scrollToIndex(i));
+          dotsW.appendChild(b);
+          return b;
+        });
+      }
+
+      function getStep() {
+        const first = items[0];
+        const rect = first.getBoundingClientRect();
+        const cs = getComputedStyle(track);
+        const gap = parseFloat(cs.columnGap || cs.gap || "0") || 0;
+
+        // se ainda não há layout (ex: tab escondida), rect.width pode ser 0
+        const w = rect.width || track.clientWidth || 1;
+        return w + gap;
+      }
+
+      function getIndex() {
+        const step = getStep() || 1;
+        return Math.round(track.scrollLeft / step);
+      }
+
+      function scrollToIndex(i) {
+        const idx = Math.max(0, Math.min(i, items.length - 1));
+        const step = getStep();
+        track.scrollTo({ left: idx * step, behavior: "smooth" });
+      }
+
+      function update() {
+        const idx = getIndex();
+        const max = items.length - 1;
+
+        if (prev) prev.disabled = idx <= 0;
+        if (next) next.disabled = idx >= max;
+
+        if (dots.length) {
+          dots.forEach((d, i) => d.setAttribute("aria-current", String(i === idx)));
+        }
+
+        // se não houver overflow, esconde setas/dots
+        const hasOverflow = track.scrollWidth > track.clientWidth + 2;
+        if (prev) prev.style.visibility = hasOverflow ? "visible" : "hidden";
+        if (next) next.style.visibility = hasOverflow ? "visible" : "hidden";
+        if (dotsW) dotsW.style.display = (hasOverflow && items.length > 1) ? "flex" : "none";
+      }
+
+      if (prev) prev.addEventListener("click", () => scrollToIndex(getIndex() - 1));
+      if (next) next.addEventListener("click", () => scrollToIndex(getIndex() + 1));
+
+      let raf = 0;
+      track.addEventListener("scroll", () => {
+        cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(update);
+      }, { passive: true });
+
+      window.addEventListener("resize", update);
+
+      updaters.push(update);
+      update();
     });
 
-    // close when clicking a link
-    qsa("a", nav).forEach((a) => a.addEventListener("click", () => setOpen(false)));
-
-    // close on ESC
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") setOpen(false);
-    });
-
-    // close if resizing to desktop
-    window.addEventListener("resize", () => {
-      if (window.innerWidth > 900) setOpen(false);
+    // permite refrescar quando trocas tabs (painéis hidden -> visíveis)
+    document.addEventListener("carousels:refresh", () => {
+      updaters.forEach((fn) => fn());
     });
   }
 
@@ -89,6 +188,9 @@
           const panel = pid ? panelsById.get(pid) : null;
           if (panel) panel.hidden = !selected;
         });
+
+        // Refresh carousels (para tabs que estavam hidden)
+        document.dispatchEvent(new Event("carousels:refresh"));
       }
 
       const initial = tabs.find((t) => t.getAttribute("aria-selected") === "true") || tabs[0];
@@ -315,7 +417,11 @@
     initMenu();
     initActiveNav();
     initThumbFallbacks();
+
+    // Carousels antes das tabs, para o refresh funcionar logo ao alternar tabs
+    initCarousels();
     initTabs();
+
     initVideos();
   });
 })();

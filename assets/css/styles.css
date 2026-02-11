@@ -2139,3 +2139,140 @@ main {
   }
 }
 
+/* Instrumentos (Banda > Músicos) */
+.instrument-grid{
+  display: grid;
+  gap: 14px;
+  margin-top: 14px;
+}
+
+@media (min-width: 900px){
+  .instrument-grid{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.instrument-card{
+  padding: 14px;
+}
+
+.instrument-title{
+  margin: 0;
+  font-size: 1.02rem;
+  letter-spacing: .2px;
+}
+
+.instrument-list{
+  margin: 10px 0 0 0;
+  padding-left: 18px;
+  line-height: 1.6;
+}
+
+.instrument-list li{
+  margin: 2px 0;
+}
+
+.school-hero{
+  margin: 0;
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.04);
+}
+
+.school-hero img{
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ===== Carousel (reutilizável) ===== */
+.media-carousel{
+  position: relative;
+  margin-top: 14px;
+}
+
+.media-carousel-viewport{
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.06);
+}
+
+.media-carousel-track{
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 100%;
+  gap: 10px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  padding: 0;
+  margin: 0;
+  scrollbar-width: none; /* Firefox */
+}
+.media-carousel-track::-webkit-scrollbar{ display:none; }
+
+.media-carousel-item{
+  scroll-snap-align: start;
+  margin: 0;
+  position: relative;
+  aspect-ratio: 16 / 9;     /* mantém “look” horizontal tipo Escola */
+  background: rgba(0,0,0,.12);
+}
+.media-carousel-item img{
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Botões (desktop) */
+.media-carousel-btn{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(0,0,0,.35);
+  color: #fff;
+  font-size: 28px;
+  line-height: 1;
+  display: none;            /* por defeito (mobile) */
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  backdrop-filter: blur(6px);
+}
+.media-carousel-btn.prev{ left: 10px; }
+.media-carousel-btn.next{ right: 10px; }
+.media-carousel-btn:disabled{ opacity: .35; cursor: default; }
+
+/* Dots */
+.media-carousel-dots{
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 10px;
+}
+.media-carousel-dot{
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  border: 0;
+  background: rgba(255,255,255,.28);
+  cursor: pointer;
+}
+.media-carousel-dot[aria-current="true"]{
+  background: rgba(255,255,255,.9);
+}
+
+/* Desktop: mostra setas */
+@media (min-width: 981px){
+  .media-carousel-btn{ display: inline-flex; }
+}
