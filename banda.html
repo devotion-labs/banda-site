@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="pt-PT">
+
+<head>
+  <link rel="icon" href="assets/favicon/favicon.ico">
+  <link rel="icon" href="assets/favicon/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Banda Cabeceirense — Banda</title>
+  <meta name="description" content="Informação sobre a Banda, músicos e projetos." />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <script src="assets/js/main.js" defer></script>
+</head>
+
+<body>
+
+  <a class="skip-link" href="#conteudo">Saltar para o conteúdo</a>
+
+  <header class="header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <img src="assets/img/logo.png" alt="Logotipo da Banda Cabeceirense" />
+        <div class="brand-title">
+          <strong>BANDA CABECEIRENSE</strong>
+          <span>Cabeceiras de Basto</span>
+        </div>
+      </a>
+
+      <button class="menu-btn" data-menu-btn aria-expanded="false" aria-controls="menu">
+        ☰ Menu
+      </button>
+
+      <nav id="menu" class="nav" data-nav aria-label="Menu principal">
+        <a href="index.html" data-page="index.html">Início</a>
+        <a href="historia.html" data-page="historia.html">História</a>
+        <a href="banda.html" data-page="banda.html">Banda</a>
+        <a href="direcao.html" data-page="direcao.html">Direção</a>
+        <a href="calendario.html" data-page="calendario.html">Calendário</a>
+        <a href="contactos.html" data-page="contactos.html">Contactos</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <div class="container">
+
+      <!-- Header igual ao padrão premium (como Direção) -->
+      <div class="section-head">
+        <h2>A Banda</h2>
+        <span class="badge">Estrutura</span>
+      </div>
+
+      <!-- Seletor (tabs) + conteúdo (sem cards dentro de cards) -->
+      <section class="band-tabs" data-tabs>
+        <div class="band-tabs-bar" role="tablist" aria-label="Estrutura da Banda">
+          <button class="band-tab" type="button" role="tab" id="tab-maestro" aria-selected="true"
+            aria-controls="panel-maestro">
+            🎼 Maestro
+          </button>
+
+          <button class="band-tab" type="button" role="tab" id="tab-musicos" aria-selected="false"
+            aria-controls="panel-musicos">
+            🎺 Músicos
+          </button>
+
+          <button class="band-tab" type="button" role="tab" id="tab-escola" aria-selected="false"
+            aria-controls="panel-escola">
+            🎓 Escola
+          </button>
+        </div>
+
+        <!-- Painéis -->
+        <div class="band-panels">
+
+          <!-- MAESTRO (layout tipo Presidente) -->
+          <div class="band-panel" role="tabpanel" id="panel-maestro" aria-labelledby="tab-maestro">
+            <div class="maestro-hero">
+              <div class="maestro-inner maestro-invert">
+
+                <!-- Coluna esquerda (desktop): kicker + foto + assinatura -->
+                <aside class="maestro-profile" aria-label="Maestro">
+                  <div class="kicker">Direção Artística</div>
+
+                  <div class="maestro-photo" style="margin-top:10px;">
+                    <img src="assets/img/people/maestro.png" alt="Maestro Carlos Silva" loading="lazy">
+                  </div>
+
+                  <div class="maestro-sign">
+                    <div class="role">Maestro</div>
+                    <div class="name">Carlos Silva</div>
+                  </div>
+                </aside>
+
+                <!-- Coluna direita (desktop): mensagem -->
+                <div class="maestro-copy">
+
+                  <p class="maestro-text" style="margin-top:10px; text-align: justify;">
+                    Nasceu em Vila Cova da Lixa no ano de 1977, começou a tocar clarinete aos sete anos de idade na
+                    Banda de Música da Lixa, tendo mais tarde estudado no Conservatório de Música de Paredes, no
+                    Conservatório de Música do Porto e na Escola de Música do Conservatório Nacional em Lisboa, nas
+                    classes dos professores António Costa Santos, Moreira Jorge e Luís Gomes, respetivamente.
+                    Em 1996 ingressou na Banda Sinfónica da Guarda Nacional Republicana, transferindo-se para a Banda
+                    Marcial da GNR do Porto no ano de 2002. Atualmente, aufere o posto de Sargento-Chefe do quadro
+                    Honorífico/Músico da referida instituição e desempenha funções administrativas, execução, chefia e
+                    direção.
+                  </p>
+
+                  <p class="maestro-text" style="margin-top:10px; text-align: justify;">
+                    Participou em Masterclass, com professores como: Joaquim Ribeiro, Luís Gomes, Nuno Silva, Carlos
+                    Alves e Rui Martins tendo trabalhado especialmente com Herman Stefansson - Solista da Filarmónica
+                    Real de Estocolmo, Guy Deplus – Solista da Ópera de Paris, entre outros. Integrou a Orquestra
+                    Lusíada (Lisboa) e tem sido convidado para efetuar concertos em diversas orquestras com destaque
+                    especial para a orquestra de gala da queima das fitas de Coimbra (2003), Orquestra “Sine Nomine”,
+                    Orquestra do Norte e OIDO (Orquestra Internacional de Diretores de Orquestra) tendo com isso
+                    oportunidade de trabalhar com maestros e solistas de renome internacional. Efetuou vários recitais
+                    pelo País e integra alguns grupos de câmara com destaque para o Quarteto de Clarinetes da “Banda
+                    Marcial da GNR do Porto” da Guarda Nacional Republicana e o Quarteto de Clarinetes do Conservatório
+                    do Vale do Sousa. Tem sido várias vezes convidado para integrar júris em concursos, festivais e
+                    orientar Masterclass.
+                  </p>
+
+                  <p class="maestro-text" style="margin-top:10px; text-align: justify;">
+                    Com uma especial dedicação pela direção, orienta diversos grupos instrumentais e corais, tendo
+                    participado em vários cursos de direção de orquestra, de banda e de coro com reconhecidos maestros,
+                    tais como: Cesário Costa, Jacinto Montezo, Barbara Frank, Jorge Matta, Eugénio Amorim, Pedro
+                    Monteiro, Paulo Vassalo Lourenço, André Granjo, Ignacio Petit, Van der Roost, Jose Rafael Vilaplana,
+                    Ernst Schelle, Mark Heron, Francisco Navarro Lara, Rafael Agulló Albors, Frank De Vuyst, Alex
+                    Schilling, entre outros. Foi Maestro do Grupo Coral Cultural e Recreativo Polifidelis–Penafiel entre
+                    1996 a 2006 e Diretor Artístico da Banda Musical de Freamunde entre 2007 a 2021. É frequentemente
+                    convidado para dirigir diversos grupos corais e instrumentais nomeadamente orientação de estágios de
+                    orquestra e ações de formação. Concluiu a frequência do Nível Superior em Direção na Escuela de
+                    Dirección de Orquesta y Banda “Maestro Navarro Lara”. Foi co-autor de várias edições Best Seller com
+                    especial destaque para VADEMÉCUM del Director de Orquestra del Siglo XXI de Francisco Navarro Lara.
+                    No ano letivo 2023-24 frequentou o Nivel III da Academia Europeia de Direção de Banda (AEDB).
+                  </p>
+
+                  <p class="maestro-text" style="margin-top:10px; text-align: justify;">
+                    Em 2008, concluiu Licenciatura em Pedagogia do Instrumento (clarinete) na Escola das Artes da
+                    Universidade Católica Portuguesa, com elevada classificação, onde estudou com os professores Carlos
+                    Alves e António Rosa. Em 2010, concluiu Mestrado em Ensino da Música na Escola das Artes da
+                    Universidade Católica Portuguesa sob a orientação do Prof. Doutor José Abreu. Em 2019, concluiu o
+                    Mestrado em Música/Ramo Direção, no Departamento de Comunicação e Arte da Universidade de Aveiro sob
+                    a orientação do Prof. Doutor Evgueni Zoudilkine com elevada classificação.
+                  </p>
+
+                  <p class="maestro-text" style="margin-top:10px; text-align: justify;">
+                    Lecionou em várias escolas de música, nomeadamente no Conservatório de Música de Felgueiras e no
+                    Conservatório de Música de Basto. Foi professor/maestro da Orquestra de Sopros do Conservatório de
+                    Vale do Sousa (CVS) entre os anos letivos 2009/10 ao 2016/17, tendo obtido o 1º Prémio/2º Lugar na
+                    Categoria Académica no III CIB Filarmonia D’Ouro. Coadjuvou a coordenação de seis edições do Estágio
+                    de Orquestra de Sopros, organizado pelo Departamento de Sopros do CVS. Atualmente, leciona a
+                    disciplina de Clarinete no Conservatório de Vale de Sousa e é Diretor Artístico da Banda
+                    Cabeceirense.
+                  </p>
+                </div>
+
+              </div>
+            </div>
+
+
+          </div>
+
+          <!-- MÚSICOS (placeholder por agora – afinamos já a seguir) -->
+          <div class="band-panel" role="tabpanel" id="panel-musicos" aria-labelledby="tab-musicos" hidden>
+            <div class="page-hero" style="margin-top:14px;">
+              <div class="kicker">Músicos</div>
+              <h3 style="margin-top:10px;">A nossa formação</h3>
+              <p style="margin-top:10px; max-width: 84ch; text-align: justify;">
+                (Placeholder) Aqui vamos construir a secção dos músicos com o mesmo nível premium, mas já em formato
+                adequado (sem cards “a mais”). Diz-me depois se queres listagem por naipes, por funções, ou apenas texto
+                institucional + números.
+              </p>
+            </div>
+          </div>
+
+          <!-- ESCOLA (placeholder por agora – afinamos já a seguir) -->
+          <div class="band-panel" role="tabpanel" id="panel-escola" aria-labelledby="tab-escola" hidden>
+            <div class="page-hero" style="margin-top:14px;">
+              <div class="kicker">Escola de Música</div>
+              <h3 style="margin-top:10px;">Formação e futuro</h3>
+              <p style="margin-top:10px; max-width: 84ch; text-align: justify;">
+                (Placeholder) Aqui vamos montar a secção da Escola: inscrições, objetivos, contacto, e eventual ligação
+                à
+                Banda Juvenil. Mantemos premium e simples.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <img src="assets/img/logo_transparent_cropped.png" alt="Logotipo da Banda Cabeceirense">
+          <div>
+            <strong>BANDA CABECEIRENSE</strong>
+            <p>Cultura, formação e comunidade em Cabeceiras de Basto.</p>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Links</h4>
+          <nav class="footer-links" aria-label="Links do site">
+            <a href="historia.html">História</a>
+            <a href="banda.html">Banda</a>
+            <a href="direcao.html">Direção</a>
+            <a href="calendario.html">Calendário</a>
+            <a href="contactos.html">Contactos</a>
+          </nav>
+        </div>
+
+        <div class="footer-col">
+          <h4>Redes Sociais</h4>
+          <div class="footer-socials" aria-label="Redes sociais">
+            <a class="social-btn" href="https://facebook.com/bandacabeceirense" target="_blank" rel="noopener"
+              aria-label="Facebook">
+              <span class="sr-only">Facebook</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M13.5 22v-8h2.7l.4-3H13.5V9.1c0-.9.3-1.6 1.7-1.6h1.5V4.8c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.4-4 4V11H8v3h2.6v8h2.9z" />
+              </svg>
+            </a>
+
+            <a class="social-btn" href="https://instagram.com/bandacabeceirense" target="_blank" rel="noopener"
+              aria-label="Instagram">
+              <span class="sr-only">Instagram</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-5 4.2A3.8 3.8 0 1 1 8.2 12 3.8 3.8 0 0 1 12 8.2zm0 2A1.8 1.8 0 1 0 13.8 12 1.8 1.8 0 0 0 12 10.2zM17.7 6.1a.9.9 0 1 1-.9.9.9.9 0 0 1 .9-.9z" />
+              </svg>
+            </a>
+
+            <a class="social-btn" href="https://youtube.com/@bandacabeceirense" target="_blank" rel="noopener"
+              aria-label="YouTube">
+              <span class="sr-only">YouTube</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M21.6 7.2a3 3 0 0 0-2.1-2.1C17.7 4.6 12 4.6 12 4.6s-5.7 0-7.5.5A3 3 0 0 0 2.4 7.2 31 31 0 0 0 2 12a31 31 0 0 0 .4 4.8 3 3 0 0 0 2.1 2.1c1.8.5 7.5.5 7.5.5s5.7 0 7.5-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 22 12a31 31 0 0 0-.4-4.8zM10.2 15.3V8.7L15.9 12l-5.7 3.3z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© <span id="y"></span> Banda Cabeceirense · Todos os direitos reservados</div>
+        <div>
+          Desenvolvido por
+          <a href="https://github.com/devotion-labs" target="_blank" rel="noopener">DEVOTION</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <script src="assets/js/main.js"></script>
+</body>
+
+</html>
