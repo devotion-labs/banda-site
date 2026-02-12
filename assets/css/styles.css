@@ -38,10 +38,7 @@ body {
 body {
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
   color: var(--text);
-  background:
-    radial-gradient(900px 360px at 10% -10%, rgba(30, 79, 163, .10), transparent 55%),
-    radial-gradient(900px 360px at 90% -10%, rgba(201, 162, 39, .10), transparent 55%),
-    var(--bg);
+  background:white;
   line-height: 1.6;
   min-height: 100vh;
   display: flex;
@@ -2450,6 +2447,7 @@ main {
   max-width: 92ch;
   margin-top: 18px;
   opacity: .85;
+  text-align: justify;
 }
 
 .table-note{
@@ -2467,7 +2465,10 @@ main {
 /* Cards pequenos (Mesa / AG / CF) com champanhe premium */
 .card.member-card.card-soft {
   /* champanhe suave, bem discreto */
-  background: rgba(201, 162, 39, .10);
+  background:
+  radial-gradient(900px 240px at 15% 0%, rgba(30, 79, 163, .12), transparent 55%),
+  radial-gradient(900px 240px at 85% 0%, rgba(201, 162, 39, .10), transparent 55%),
+  #fff;
   border: 1px solid rgba(245, 233, 196, 0.28);
 }
 
@@ -2496,5 +2497,250 @@ main {
 .card.member-card.card-soft .email-link:hover {
   opacity: 1;
   text-decoration: underline;
+}
+
+/* ===== História: vídeo inline (à largura do container) ===== */
+.story-feature{ margin-top: 14px; }
+
+.story-video{
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.06);
+  box-shadow: var(--shadow-2);
+}
+
+.story-video img{
+  width: 100%;
+  height: auto;
+  display: block;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* iframe ocupa o mesmo espaço da thumb */
+.story-video iframe{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.story-video-play{
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  border: 0;
+  background: linear-gradient(to top, rgba(0,0,0,.35), rgba(0,0,0,.10));
+  cursor: pointer;
+}
+
+.story-video-play span{
+  width: 78px;
+  height: 78px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font-size: 40px;
+  color: #fff;
+  background: rgba(0,0,0,.45);
+  border: 1px solid rgba(255,255,255,.22);
+  backdrop-filter: blur(6px);
+}
+
+.story-video.is-playing img,
+.story-video.is-playing .story-video-play{
+  opacity: 0;
+  pointer-events: none;
+}
+
+.yt-close{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(0,0,0,.35);
+  color: #fff;
+  font-size: 26px;
+  line-height: 1;
+  display: none;
+  place-items: center;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+}
+.story-video.is-playing .yt-close{ display: grid; }
+
+.story-video-actions{
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.muted-link{
+  color: navy;
+  text-decoration: none;
+}
+.muted-link:hover{
+  color: navy;
+  text-decoration: underline;
+}
+
+/* ===== História: 2 imagens lado a lado ===== */
+.story-duo{
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 2 colunas */
+  gap: 12px;
+}
+
+.story-duo-figure{
+  margin: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(0,0,0,.12);
+  border: 1px solid rgba(255,255,255,.06);
+  box-shadow: var(--shadow-2);
+}
+
+.story-duo-figure img{
+  width: 100%;
+  height: auto;
+  display: block;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Mobile: empilha (como pediste originalmente) */
+@media (max-width: 720px){
+  .story-duo{ grid-template-columns: 1fr; }
+}
+
+.story-intro {
+  text-align: justify;
+}
+
+/* ===== Testemunhos (História) ===== */
+
+.story-testimonials { margin-top: 28px; }
+
+.story-subhead h3 { margin: 0 0 6px; }
+.story-subhead .muted { margin: 0 0 16px; }
+
+.testimonials-list {
+  display: grid;
+  gap: 14px;
+}
+
+.testimonial {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 16px;
+  border: 1px solid var(--line, rgba(0,0,0,.12));
+  border-radius: 16px;
+  background: var(--card, #fff);
+}
+
+.testimonial.is-reverse {
+  flex-direction: row-reverse;
+}
+
+.testimonial-avatar {
+  margin: 0;
+  flex: 0 0 auto;
+}
+
+.testimonial-avatar img {
+  width: 84px;
+  height: 84px;
+  border-radius: 999px;
+  object-fit: cover;
+  border: 1px solid var(--line, rgba(0,0,0,.12));
+}
+
+.testimonial-content { flex: 1; min-width: 0; }
+
+.testimonial-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 10px;
+  align-items: baseline;
+  margin-bottom: 8px;
+}
+
+.testimonial-name { font-weight: 700; }
+.testimonial-role { opacity: .75; font-size: .95rem; }
+
+.testimonial-quote {
+  margin: 0;
+  padding-left: 12px;
+  border-left: 3px solid var(--line-strong, rgba(0,0,0,.25));
+  line-height: 1.55;
+  text-align: justify;
+}
+
+.testimonial-meta {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  align-items: center;
+  opacity: .8;
+  font-size: .95rem;
+}
+
+/* Mobile: centro (imagem em cima + texto abaixo) */
+@media (max-width: 720px) {
+  .testimonial,
+  .testimonial.is-reverse {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .testimonial-quote {
+    padding-left: 0;
+    border-left: none;
+    border-top: 3px solid var(--line-strong, rgba(0,0,0,.25));
+    padding-top: 10px;
+    text-align: justify;
+  }
+
+  .testimonial-meta {
+    justify-content: center;
+  }
+}
+
+/* Fundo suave para os cards de testemunhos */
+.testimonial{
+  background:
+  radial-gradient(900px 240px at 15% 0%, rgba(30, 79, 163, .12), transparent 55%),
+  radial-gradient(900px 240px at 85% 0%, rgba(201, 162, 39, .10), transparent 55%),
+  #fff;
+}
+
+/* Mantém o desktop como está */
+.testimonial-head{
+  text-align: left;
+}
+
+/* Mobile: centra nome + role (e também o conteúdo todo, como já tinhas) */
+@media (max-width: 720px){
+  .testimonial-head{
+    justify-content: center;
+    text-align: center;
+  }
+
+  .testimonial-content{
+    text-align: center;
+  }
 }
 

@@ -58,19 +58,38 @@
     });
   }
 
+  function setYTThumb(img, id) {
+    if (!img || !id) return;
 
+    // Usa sempre uma thumb que quase nunca falha
+    img.src = `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
+
+    // Fallbacks extra
+    img.dataset.fallback = `https://i.ytimg.com/vi/${id}/mqdefault.jpg`;
+    img.dataset.fallback2 = `https://img.youtube.com/vi/${id}/0.jpg`;
+  }
 
   // ---------- YouTube thumbnails fallback (maxres -> hq -> mq) ----------
   function initThumbFallbacks() {
     const thumbs = qsa("img.yt-thumb");
+
     thumbs.forEach((img) => {
       const fallbacks = [img.dataset.fallback, img.dataset.fallback2].filter(Boolean);
       let i = 0;
-      img.addEventListener("error", () => {
+
+      const tryNext = () => {
         if (i < fallbacks.length) img.src = fallbacks[i++];
-      });
+      };
+
+      img.addEventListener("error", tryNext);
+
+      // Se a imagem já falhou antes de ligarmos o listener, força fallback agora
+      if (img.complete && img.naturalWidth === 0) {
+        tryNext();
+      }
     });
   }
+
 
   // ---------- carousels (swipe mobile + setas desktop) ----------
   function initCarousels() {
@@ -582,6 +601,100 @@
     }
   }
 
+  // ---------- inline YouTube (1 vídeo simples, estilo index: toca no site) ----------
+  function initInlineYouTube() {
+    const blocks = qsa("[data-inline-video]");
+    if (!blocks.length) return;
+
+    let current = null;
+    let preconnected = false;
+
+    function preconnectYouTube() {
+      if (preconnected) return;
+      preconnected = true;
+      ["https://www.youtube-nocookie.com", "https://i.ytimg.com", "https://www.google.com"].forEach((href) => {
+        const l = document.createElement("link");
+        l.rel = "preconnect";
+        l.href = href;
+        l.crossOrigin = "anonymous";
+        document.head.appendChild(l);
+      });
+    }
+
+    function iframeHTML(videoId, title) {
+      const origin = encodeURIComponent(window.location.origin || "");
+      const src =
+        "https://www.youtube-nocookie.com/embed/" +
+        encodeURIComponent(videoId) +
+        `?rel=0&modestbranding=1&playsinline=1&autoplay=1&mute=1&origin=${origin}`;
+
+      return `
+      <iframe
+        src="${src}"
+        title="${title || "YouTube video"}"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+      ></iframe>
+    `;
+    }
+
+    function stop(block) {
+      if (!block) return;
+      block.querySelectorAll("iframe").forEach((f) => f.remove());
+      block.classList.remove("is-playing");
+    }
+
+    function play(block) {
+      const id = block.dataset.videoId || "";
+      if (!id) return;
+
+      preconnectYouTube();
+
+      if (current && current !== block) stop(current);
+
+      // toggle: se já está a tocar, fecha
+      if (block.classList.contains("is-playing")) {
+        stop(block);
+        current = null;
+        return;
+      }
+
+      stop(block);
+      block.classList.add("is-playing");
+      block.insertAdjacentHTML("beforeend", iframeHTML(id, block.dataset.title || ""));
+      current = block;
+    }
+
+    blocks.forEach((block) => {
+      const id = block.dataset.videoId || "";
+      const img = qs("img.yt-thumb", block);
+      if (img && id) setYTThumb(img, id);
+
+      const btnPlay = qs(".story-video-play", block);
+      const btnClose = qs(".yt-close", block);
+
+
+      block.addEventListener("pointerenter", preconnectYouTube, { passive: true });
+
+      // clicar na thumb / botão => toca
+      (btnPlay || block).addEventListener("click", (e) => {
+        e.preventDefault();
+        play(block);
+      });
+
+      // fechar
+      if (btnClose) {
+        btnClose.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          stop(block);
+          if (current === block) current = null;
+        });
+      }
+    });
+  }
+
 
   // ---------- bootstrap ----------
   document.addEventListener("DOMContentLoaded", () => {
@@ -592,6 +705,7 @@
     initCarousels();
     initTabs();
     initVideos();
+    initInlineYouTube();
     initCalendarFromCSV();
   });
 })();
