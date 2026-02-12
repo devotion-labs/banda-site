@@ -411,17 +411,187 @@
     });
   }
 
+  // ---------- calendário (CSV -> tabela + cards) ----------
+  async function initCalendarFromCSV() {
+    const tableBody = qs("#calendarTableBody");
+    const cardsWrap = qs("#calendarCards");
+    if (!tableBody || !cardsWrap) return; // só corre na página calendário
+
+    const CSV_URL = "assets/data/calendario.csv";
+
+    function escapeHTML(str) {
+      return String(str ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function parseCSV(text) {
+      // parser simples (suporta aspas)
+      const rows = [];
+      let row = [];
+      let cur = "";
+      let inQuotes = false;
+
+      for (let i = 0; i < text.length; i++) {
+        const ch = text[i];
+        const next = text[i + 1];
+
+        if (ch === '"' && next === '"') {
+          cur += '"';
+          i++;
+          continue;
+        }
+        if (ch === '"') {
+          inQuotes = !inQuotes;
+          continue;
+        }
+        if (ch === "," && !inQuotes) {
+          row.push(cur);
+          cur = "";
+          continue;
+        }
+        if ((ch === "\n" || ch === "\r") && !inQuotes) {
+          if (ch === "\r" && next === "\n") i++;
+          row.push(cur);
+          cur = "";
+          if (row.some((c) => c.trim() !== "")) rows.push(row);
+          row = [];
+          continue;
+        }
+        cur += ch;
+      }
+
+      // último campo
+      row.push(cur);
+      if (row.some((c) => c.trim() !== "")) rows.push(row);
+      return rows;
+    }
+
+    function formatDatePT(iso) {
+      // iso: YYYY-MM-DD
+      if (!iso) return "—";
+      const [y, m, d] = iso.split("-").map(Number);
+      if (!y || !m || !d) return iso;
+
+      // PT-PT: 06/01/2026
+      const dd = String(d).padStart(2, "0");
+      const mm = String(m).padStart(2, "0");
+      return `${dd}/${mm}/${y}`;
+    }
+
+    function toDateValue(iso) {
+      // valor numérico para ordenar; fallback alto
+      if (!iso) return Number.POSITIVE_INFINITY;
+      const t = Date.parse(iso);
+      return Number.isFinite(t) ? t : Number.POSITIVE_INFINITY;
+    }
+
+    function normalizeEvent(r) {
+      return {
+        date: (r.date || "").trim(),
+        event: (r.event || "").trim(),
+        location: (r.location || "").trim(),
+        time: (r.time || "").trim(),
+        alternating: (r.alternating || "").trim(),
+        notes: (r.notes || "").trim(),
+      };
+    }
+
+    function renderEmpty(msg) {
+      tableBody.innerHTML = `<tr><td colspan="5">${escapeHTML(msg)}</td></tr>`;
+      cardsWrap.innerHTML = "";
+    }
+
+    try {
+      const res = await fetch(CSV_URL, { cache: "no-store" });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const text = await res.text();
+
+      const rows = parseCSV(text);
+      if (rows.length < 2) {
+        renderEmpty("Sem eventos para apresentar.");
+        return;
+      }
+
+      const headers = rows[0].map((h) => h.trim().toLowerCase());
+      const idx = (name) => headers.indexOf(name);
+
+      const required = ["date", "event", "location", "time", "alternating"];
+      const missing = required.filter((h) => idx(h) === -1);
+      if (missing.length) {
+        renderEmpty(`CSV inválido. Faltam colunas: ${missing.join(", ")}`);
+        return;
+      }
+
+      const data = rows
+        .slice(1)
+        .map((cols) => {
+          const obj = {};
+          headers.forEach((h, i) => (obj[h] = cols[i] ?? ""));
+          return normalizeEvent(obj);
+        })
+        .filter((e) => e.event || e.date || e.location || e.time || e.alternating);
+
+      // ordenar por data (asc)
+      data.sort((a, b) => toDateValue(a.date) - toDateValue(b.date));
+
+      if (!data.length) {
+        renderEmpty("Sem eventos para apresentar.");
+        return;
+      }
+
+      // TABELA
+      tableBody.innerHTML = data
+        .map((e) => {
+          const alt = e.alternating || "—";
+          return `
+            <tr>
+              <td>${escapeHTML(formatDatePT(e.date))}</td>
+              <td>${escapeHTML(e.event || "—")}${e.notes ? `<div class="table-note">${escapeHTML(e.notes)}</div>` : ""}</td>
+              <td>${escapeHTML(e.location || "—")}</td>
+              <td>${escapeHTML(e.time || "—")}</td>
+              <td>${escapeHTML(alt)}</td>
+            </tr>
+          `;
+        })
+        .join("");
+
+      // CARDS (MOBILE)
+      cardsWrap.innerHTML = data
+        .map((e) => {
+          return `
+            <div class="event-card">
+              <strong>${escapeHTML(e.event || "Evento")}</strong>
+              <div class="event-row"><span>Data</span><span>${escapeHTML(formatDatePT(e.date))}</span></div>
+              <div class="event-row"><span>Local</span><span>${escapeHTML(e.location || "—")}</span></div>
+              <div class="event-row"><span>Hora</span><span>${escapeHTML(e.time || "—")}</span></div>
+              <div class="event-row"><span>Banda a alternar</span><span>${escapeHTML(e.alternating || "—")}</span></div>
+              ${e.notes ? `<div class="event-note">${escapeHTML(e.notes)}</div>` : ""}
+            </div>
+          `;
+        })
+        .join("");
+
+    } catch (err) {
+      renderEmpty("Não foi possível carregar o calendário.");
+      // opcional: console para debug
+      console.warn("Calendar CSV load failed:", err);
+    }
+  }
+
+
   // ---------- bootstrap ----------
   document.addEventListener("DOMContentLoaded", () => {
     initYear();
     initMenu();
     initActiveNav();
     initThumbFallbacks();
-
-    // Carousels antes das tabs, para o refresh funcionar logo ao alternar tabs
     initCarousels();
     initTabs();
-
     initVideos();
+    initCalendarFromCSV();
   });
 })();
