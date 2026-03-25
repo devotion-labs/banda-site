@@ -2744,3 +2744,7 @@ main {
   }
 }
 
+.story-spotlight .section-head {
+  justify-content: flex-end; /* quando só há badge, ele vai para a direita */
+  padding-top: 12px;
+}

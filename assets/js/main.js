@@ -430,25 +430,16 @@
     });
   }
 
-  // ---------- calendário (CSV -> tabela + cards) ----------
-  async function initCalendarFromCSV() {
-    const tableBody = qs("#calendarTableBody");
-    const cardsWrap = qs("#calendarCards");
-    if (!tableBody || !cardsWrap) return; // só corre na página calendário
-
     const CSV_URL = "assets/data/calendario.csv";
 
-    function escapeHTML(str) {
-      return String(str ?? "")
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
+    function cleanHeader(str) {
+      return String(str || "")
+        .replace(/^\uFEFF/, "")
+        .trim()
+        .toLowerCase();
     }
 
     function parseCSV(text) {
-      // parser simples (suporta aspas)
       const rows = [];
       let row = [];
       let cur = "";
@@ -463,15 +454,18 @@
           i++;
           continue;
         }
+
         if (ch === '"') {
           inQuotes = !inQuotes;
           continue;
         }
+
         if (ch === "," && !inQuotes) {
           row.push(cur);
           cur = "";
           continue;
         }
+
         if ((ch === "\n" || ch === "\r") && !inQuotes) {
           if (ch === "\r" && next === "\n") i++;
           row.push(cur);
@@ -480,32 +474,132 @@
           row = [];
           continue;
         }
+
         cur += ch;
       }
 
-      // último campo
       row.push(cur);
       if (row.some((c) => c.trim() !== "")) rows.push(row);
+
       return rows;
     }
 
-    function formatDatePT(iso) {
-      // iso: YYYY-MM-DD
-      if (!iso) return "—";
-      const [y, m, d] = iso.split("-").map(Number);
-      if (!y || !m || !d) return iso;
-
-      // PT-PT: 06/01/2026
-      const dd = String(d).padStart(2, "0");
-      const mm = String(m).padStart(2, "0");
-      return `${dd}/${mm}/${y}`;
+    function isISODate(str) {
+      return /^\d{4}-\d{2}-\d{2}$/.test(str);
     }
 
-    function toDateValue(iso) {
-      // valor numérico para ordenar; fallback alto
-      if (!iso) return Number.POSITIVE_INFINITY;
-      const t = Date.parse(iso);
+    function parseDateField(value) {
+      const raw = String(value || "").trim();
+      if (!raw) return { raw: "", start: "", end: "" };
+
+      if (raw.includes("/")) {
+        const [start, end] = raw.split("/").map((s) => s.trim());
+        return {
+          raw,
+          start: isISODate(start) ? start : "",
+          end: isISODate(end) ? end : ""
+        };
+      }
+
+      return {
+        raw,
+        start: isISODate(raw) ? raw : "",
+        end: ""
+      };
+    }
+
+    function formatSingleDatePT(iso) {
+      if (!isISODate(iso)) return iso;
+      const [y, m, d] = iso.split("-");
+      return `${d}/${m}/${y}`;
+    }
+
+    function formatDatePT(value) {
+      const { raw, start, end } = parseDateField(value);
+
+      if (start && end) return `${formatSingleDatePT(start)} a ${formatSingleDatePT(end)}`;
+      if (start) return formatSingleDatePT(start);
+
+      return raw || "—";
+    }
+
+    function formatDateLongPT(value) {
+      const { raw, start, end } = parseDateField(value);
+
+      if (!start) return raw || "—";
+
+      const date = new Date(`${start}T00:00:00`);
+
+      return capitaliseFirst(
+          new Intl.DateTimeFormat("pt-PT", {
+            weekday: "long",
+            day: "numeric",
+            month: "long",
+            year: "numeric"
+          }).format(date)
+        );
+    }
+
+    function capitaliseFirst(str) {
+      return str ? str.charAt(0).toUpperCase() + str.slice(1) : str;
+    }
+
+    function escapeHTML(str) {
+      return String(str ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function buildNextEventHTML(e) {
+      const lines = [];
+
+      const firstLineParts = [];
+      if (e.event) firstLineParts.push(escapeHTML(e.event));
+      if (e.location) firstLineParts.push(escapeHTML(e.location));
+
+      const firstLine = firstLineParts.join(" - ");
+      if (firstLine) lines.push(firstLine);
+
+      if (e.notes) {
+        lines.push(escapeHTML(e.notes));
+      } else if (e.time) {
+        lines.push(`Hora: ${escapeHTML(e.time)}`);
+      }
+
+      if (e.alternating) {
+        lines.push(`A alternar: ${escapeHTML(e.alternating)}`);
+      }
+
+      if (!lines.length) {
+        return "Consulte a agenda para mais informações.";
+      }
+
+      return lines.join("<br>");
+    }
+
+    function toDateValue(value) {
+      const { start } = parseDateField(value);
+      if (!start) return Number.POSITIVE_INFINITY;
+
+      const t = Date.parse(`${start}T00:00:00`);
       return Number.isFinite(t) ? t : Number.POSITIVE_INFINITY;
+    }
+
+    function getEventEndDateValue(value) {
+      const { start, end } = parseDateField(value);
+      const finalDate = end || start;
+      if (!finalDate) return Number.NEGATIVE_INFINITY;
+
+      const t = Date.parse(`${finalDate}T23:59:59`);
+      return Number.isFinite(t) ? t : Number.NEGATIVE_INFINITY;
+    }
+
+    function getTodayStartValue() {
+      const now = new Date();
+      return new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
     }
 
     function normalizeEvent(r) {
@@ -519,87 +613,150 @@
       };
     }
 
-    function renderEmpty(msg) {
-      tableBody.innerHTML = `<tr><td colspan="5">${escapeHTML(msg)}</td></tr>`;
-      cardsWrap.innerHTML = "";
+    function isUnconfirmedEvent(e) {
+      return (e.event || "").trim().toLowerCase() === "a confirmar";
     }
 
-    try {
+    function buildNextEventText(e) {
+      if (e.highlightText) return e.highlightText;
+
+      const parts = [];
+      if (e.event) parts.push(e.event);
+      if (e.location) parts.push(`em ${e.location}`);
+      if (e.time) parts.push(`às ${e.time}`);
+
+      let text = parts.join(", ");
+      if (!text) text = "Consulte a agenda para mais informações.";
+
+      if (e.notes) text += `. ${e.notes}`;
+      return text;
+    }
+
+    async function loadCalendarData() {
       const res = await fetch(CSV_URL, { cache: "no-store" });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
       const text = await res.text();
-
       const rows = parseCSV(text);
-      if (rows.length < 2) {
-        renderEmpty("Sem eventos para apresentar.");
-        return;
-      }
 
-      const headers = rows[0].map((h) => h.trim().toLowerCase());
-      const idx = (name) => headers.indexOf(name);
+      if (rows.length < 2) return [];
 
-      const required = ["date", "event", "location", "time", "alternating"];
-      const missing = required.filter((h) => idx(h) === -1);
-      if (missing.length) {
-        renderEmpty(`CSV inválido. Faltam colunas: ${missing.join(", ")}`);
-        return;
-      }
+      const headers = rows[0].map(cleanHeader);
 
-      const data = rows
+      return rows
         .slice(1)
         .map((cols) => {
           const obj = {};
-          headers.forEach((h, i) => (obj[h] = cols[i] ?? ""));
+          headers.forEach((h, i) => {
+            obj[h] = cols[i] ?? "";
+          });
           return normalizeEvent(obj);
         })
-        .filter((e) => e.event || e.date || e.location || e.time || e.alternating);
+        .filter((e) => e.event || e.date || e.location || e.time || e.alternating || e.notes)
+        .filter((e) => !isUnconfirmedEvent(e))
+        .sort((a, b) => toDateValue(a.date) - toDateValue(b.date));
+    }
 
-      // ordenar por data (asc)
-      data.sort((a, b) => toDateValue(a.date) - toDateValue(b.date));
+  // ---------- calendário (CSV -> tabela + cards) ----------
+      async function initCalendarFromCSV() {
+      const tableBody = qs("#calendarTableBody");
+      const cardsWrap = qs("#calendarCards");
+      if (!tableBody || !cardsWrap) return;
 
-      if (!data.length) {
-        renderEmpty("Sem eventos para apresentar.");
-        return;
+      function escapeHTML(str) {
+        return String(str ?? "")
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#039;");
       }
 
-      // TABELA
-      tableBody.innerHTML = data
-        .map((e) => {
-          const alt = e.alternating || "—";
-          return `
-            <tr>
-              <td>${escapeHTML(formatDatePT(e.date))}</td>
-              <td>${escapeHTML(e.event || "—")}${e.notes ? `<div class="table-note">${escapeHTML(e.notes)}</div>` : ""}</td>
-              <td>${escapeHTML(e.location || "—")}</td>
-              <td>${escapeHTML(e.time || "—")}</td>
-              <td>${escapeHTML(alt)}</td>
-            </tr>
-          `;
-        })
-        .join("");
+      function renderEmpty(msg) {
+        tableBody.innerHTML = `<tr><td colspan="5">${escapeHTML(msg)}</td></tr>`;
+        cardsWrap.innerHTML = "";
+      }
 
-      // CARDS (MOBILE)
-      cardsWrap.innerHTML = data
-        .map((e) => {
-          return `
-            <div class="event-card">
-              <strong>${escapeHTML(e.event || "Evento")}</strong>
-              <div class="event-row"><span>Data</span><span>${escapeHTML(formatDatePT(e.date))}</span></div>
-              <div class="event-row"><span>Local</span><span>${escapeHTML(e.location || "—")}</span></div>
-              <div class="event-row"><span>Hora</span><span>${escapeHTML(e.time || "—")}</span></div>
-              <div class="event-row"><span>Banda a alternar</span><span>${escapeHTML(e.alternating || "—")}</span></div>
-              ${e.notes ? `<div class="event-note">${escapeHTML(e.notes)}</div>` : ""}
-            </div>
-          `;
-        })
-        .join("");
+      try {
+        const data = await loadCalendarData();
 
-    } catch (err) {
-      renderEmpty("Não foi possível carregar o calendário.");
-      // opcional: console para debug
-      console.warn("Calendar CSV load failed:", err);
+        if (!data.length) {
+          renderEmpty("Sem eventos para apresentar.");
+          return;
+        }
+
+        tableBody.innerHTML = data
+          .map((e) => {
+            const alt = e.alternating || "—";
+            return `
+              <tr>
+                <td>${escapeHTML(formatDatePT(e.date))}</td>
+                <td>${escapeHTML(e.event || "—")}${e.notes ? `<div class="table-note">${escapeHTML(e.notes)}</div>` : ""}</td>
+                <td>${escapeHTML(e.location || "—")}</td>
+                <td>${escapeHTML(e.time || "—")}</td>
+                <td>${escapeHTML(alt)}</td>
+              </tr>
+            `;
+          })
+          .join("");
+
+        cardsWrap.innerHTML = data
+          .map((e) => {
+            return `
+              <div class="event-card">
+                <strong>${escapeHTML(e.event || "Evento")}</strong>
+                <div class="event-row"><span>Data</span><span>${escapeHTML(formatDatePT(e.date))}</span></div>
+                <div class="event-row"><span>Local</span><span>${escapeHTML(e.location || "—")}</span></div>
+                <div class="event-row"><span>Hora</span><span>${escapeHTML(e.time || "—")}</span></div>
+                <div class="event-row"><span>Banda a alternar</span><span>${escapeHTML(e.alternating || "—")}</span></div>
+                ${e.notes ? `<div class="event-note">${escapeHTML(e.notes)}</div>` : ""}
+              </div>
+            `;
+          })
+          .join("");
+
+      } catch (err) {
+        renderEmpty("Não foi possível carregar o calendário.");
+        console.warn("Calendar CSV load failed:", err);
+      }
     }
-  }
+
+   async function initHomepageNextEvent() {
+      console.log("initHomepageNextEvent arrancou");
+
+      const labelEl = qs("#nextEventLabel");
+      const dateEl = qs("#nextEventDate");
+      const textEl = qs("#nextEventText");
+
+      console.log({ labelEl, dateEl, textEl });
+
+      if (!labelEl || !dateEl || !textEl) return;
+
+      dateEl.textContent = "TESTE";
+      textEl.textContent = "A função está a correr.";
+
+      try {
+        const data = await loadCalendarData();
+        const todayValue = getTodayStartValue();
+
+        const nextEvent = data.find((e) => getEventEndDateValue(e.date) >= todayValue);
+
+        if (!nextEvent) {
+          labelEl.textContent = "Próximo evento";
+          dateEl.textContent = "Sem data disponível";
+          textEl.textContent = "Não existem atuações futuras confirmadas neste momento.";
+          return;
+        }
+
+        labelEl.textContent = "Próximo evento";
+        dateEl.textContent = formatDateLongPT(nextEvent.date);
+        textEl.innerHTML = buildNextEventHTML(nextEvent);
+      } catch (err) {
+        dateEl.textContent = "Indisponível";
+        textEl.textContent = "Não foi possível carregar o próximo evento.";
+        console.warn("Next event load failed:", err);
+      }
+    }
 
   // ---------- inline YouTube (1 vídeo simples, estilo index: toca no site) ----------
   function initInlineYouTube() {
@@ -697,15 +854,30 @@
 
 
   // ---------- bootstrap ----------
-  document.addEventListener("DOMContentLoaded", () => {
-    initYear();
-    initMenu();
-    initActiveNav();
-    initThumbFallbacks();
-    initCarousels();
-    initTabs();
-    initVideos();
-    initInlineYouTube();
-    initCalendarFromCSV();
-  });
+    function safeInit(name, fn) {
+      try {
+        const result = fn();
+        if (result && typeof result.catch === "function") {
+          result.catch((err) => console.error(`${name} failed:`, err));
+        }
+      } catch (err) {
+        console.error(`${name} failed:`, err);
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      safeInit("initYear", initYear);
+      safeInit("initMenu", initMenu);
+      safeInit("initActiveNav", initActiveNav);
+
+      // chama cedo a home
+      safeInit("initHomepageNextEvent", initHomepageNextEvent);
+
+      safeInit("initThumbFallbacks", initThumbFallbacks);
+      safeInit("initCarousels", initCarousels);
+      safeInit("initTabs", initTabs);
+      safeInit("initVideos", initVideos);
+      safeInit("initInlineYouTube", initInlineYouTube);
+      safeInit("initCalendarFromCSV", initCalendarFromCSV);
+    });
 })();

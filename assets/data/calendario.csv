@@ -1,7 +1,23 @@
-date,event,location,time,alternating,notes
-2026-04-25,Festival de Bandas de Vieira do Minho,Vieira do Minho,14h,Banda Musical de Calvos/Banda de Vieira do Minho/Banda de Vilarchão,Entrada Livre
-2026-04-26,Festa em Honra de Santa Senhorinha,Basto (Santa Senhorinha),14h,,Romaria
-2026-05-16,Festa em Honra de Santa Cruz, Alvarães (Viana do Castelo),8h,Banda X,Romaria
-2026-05-31,Concerto de Primavera,Praça da República (Cabeceiras de Basto),21h30,,Entrada Livre
-2026-06-23,São João de Braga,Braga,8h,Banda de X,Romaria
-2026-06-28,Festa em Honra de São Pedro,Alvite (Cabeceiras de Basto),14h,,Romaria
+date,event,location,time,alternating,notes,highlight_text
+2026-03-22,Procissão do Encontro,Mondim de Basto,15h,Banda Filarmónica Mondinense,Horário completo: 15h - 18h30
+2026-04-12,Pascoela,Faia,8h,,Horário completo: 8h - 20h
+2026-04-25,Festival de Bandas de Vieira do Minho,Vieira do Minho,13h30,S. F. de Vilarchão / S. F. de Vieira do Minho/Banda M. de Calvos,Horário completo: 13h30 - 20h
+2026-04-26,Festa de Santa Senhorinha,Basto,14h,,Horário completo: 14h - 20h
+2026-05-30,Concerto de Primavera,Refojos,18h,,Hora indicada na imagem como aproximada: 18h (?)
+2026-07-05,São Pedro,Alvite,14h,,Horário completo: 14h - 20h
+2026-07-12,Nossa Senhora de Belém,Póvoa de Varzim,8h,Banda M. da Póvoa de Varzim,Horário completo: 8h - 21h
+2026-07-19,Senhora da Saúde,Refojos,8h,,Horário completo: 8h - 13h
+2026-07-25,A confirmar,,14h,,Horário completo: 14h - 23h30
+2026-07-26,Festas em Honra de São Tiago,"Macieira de Rates, Barcelos",8h,Banda de Vilela,Horário completo: 8h - 21h
+2026-08-09,Festas Concelhias de Terras de Bouro,Terras de Bouro,15h,Banda Musical de Carvalheira,Horário completo: 15h - 01h
+2026-08-14,A confirmar,,9h,Banda,Horário completo: 9h - 01h
+2026-08-15,A confirmar,,,Banda,Serviço a confirmar
+2026-08-16,Festa do Santíssimo Sacramento,Quinchães,14h,,Horário completo: 14h - 20h
+2026-08-22,Nossa Sra. dos Remédios,"Fontão, Ponte de Lima",14h,Banda de Música de Estorãos,Horário completo: 14h - 00h
+2026-08-23,A confirmar,,,Banda,Serviço a confirmar
+2026-08-30,Festa em Honra de Santa Justa,"Negreiros, Barcelos",8h,Banda Velha de Barroselas,Horário completo: 8h - 00h
+2026-09-06,Senhora dos Remédios,Arco de Baúlhe,14h,,Horário completo: 14h - 20h
+2026-09-13,Festa em honra de Sra. da Misericórdia e Sta Luzia,"Airão Sta Maria, Guimarães",14h,,Horário completo: 14h - 19h
+2026-09-19,A confirmar,,,Banda,Serviço a confirmar
+2026-09-29,Feira de São Miguel,Cabeceiras de Basto,14h,Banda M. da Póvoa de Varzim,Horário completo: 14h - 00h
+2026-10-04/2026-10-05,Feira da Ladra,Vieira do Minho,,,Serviço em 2 dias; horário a confirmar
