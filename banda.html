@@ -2,629 +2,706 @@
 <html lang="pt-PT">
 
 <head>
-  <link rel="icon" href="assets/favicon/favicon.ico">
-  <link rel="icon" href="assets/favicon/favicon-32.png" type="image/png" sizes="32x32">
-  <link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png">
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Banda Cabeceirense — Banda</title>
-  <meta name="description" content="Informação sobre a Banda, músicos e projetos." />
-  <link rel="stylesheet" href="assets/css/styles.css" />
-  <script src="assets/js/main.js" defer></script>
+    <link rel="icon" href="assets/favicon/favicon.ico">
+    <link rel="icon" href="assets/favicon/favicon-32.png" type="image/png" sizes="32x32">
+    <link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png">
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Banda Cabeceirense — Banda</title>
+    <meta name="description" content="Informação sobre a Banda, músicos e projetos."/>
+    <link rel="stylesheet" href="assets/css/styles.css"/>
+    <script src="assets/js/main.js" defer></script>
 </head>
 
 <body>
 
-  <a class="skip-link" href="#conteudo">Saltar para o conteúdo</a>
+<a class="skip-link" href="#conteudo">Saltar para o conteúdo</a>
 
-  <header class="header">
+<header class="header">
     <div class="container header-inner">
-      <a class="brand" href="index.html">
-        <img src="assets/img/logo.png" alt="Logotipo da Banda Cabeceirense" />
-        <div class="brand-title">
-          <strong>BANDA CABECEIRENSE</strong>
-          <span>Cabeceiras de Basto</span>
-        </div>
-      </a>
+        <a class="brand" href="index.html">
+            <img src="assets/img/logo.png" alt="Logotipo da Banda Cabeceirense"/>
+            <div class="brand-title">
+                <strong>BANDA CABECEIRENSE</strong>
+                <span>Cabeceiras de Basto</span>
+            </div>
+        </a>
 
-      <button class="menu-btn" data-menu-btn aria-expanded="false" aria-controls="menu">
-        ☰ Menu
-      </button>
+        <button class="menu-btn" data-menu-btn aria-expanded="false" aria-controls="menu">
+            ☰ Menu
+        </button>
 
-      <nav id="menu" class="nav" data-nav aria-label="Menu principal">
-        <a href="index.html" data-page="index.html">Início</a>
-        <a href="historia.html" data-page="historia.html">História</a>
-        <a href="banda.html" data-page="banda.html">Banda</a>
-        <a href="direcao.html" data-page="direcao.html">Direção</a>
-        <a href="calendario.html" data-page="calendario.html">Calendário</a>
-        <a href="contactos.html" data-page="contactos.html">Contactos</a>
-      </nav>
+        <nav id="menu" class="nav" data-nav aria-label="Menu principal">
+            <a href="index.html" data-page="index.html">Início</a>
+            <a href="historia.html" data-page="historia.html">História</a>
+            <a href="banda.html" data-page="banda.html">Banda</a>
+            <a href="direcao.html" data-page="direcao.html">Direção</a>
+            <a href="calendario.html" data-page="calendario.html">Calendário</a>
+            <a href="contactos.html" data-page="contactos.html">Contactos</a>
+        </nav>
     </div>
-  </header>
+</header>
 
-  <main id="conteudo">
+<main id="conteudo">
     <div class="container">
 
-      <!-- Header igual ao padrão premium (como Direção) -->
-      <div class="section-head">
-        <h2>A Banda</h2>
-        <span class="badge">Estrutura</span>
-      </div>
-
-      <!-- Seletor (tabs) + conteúdo (sem cards dentro de cards) -->
-      <section class="band-tabs" data-tabs>
-        <div class="band-tabs-bar" role="tablist" aria-label="Estrutura da Banda">
-          <button class="band-tab" type="button" role="tab" id="tab-maestro" aria-selected="true"
-            aria-controls="panel-maestro">
-            🎼 Maestro
-          </button>
-
-          <button class="band-tab" type="button" role="tab" id="tab-musicos" aria-selected="false"
-            aria-controls="panel-musicos">
-            🎺 Músicos
-          </button>
-
-          <button class="band-tab" type="button" role="tab" id="tab-escola" aria-selected="false"
-            aria-controls="panel-escola">
-            🎓 Escola
-          </button>
+        <!-- Header igual ao padrão premium (como Direção) -->
+        <div class="section-head">
+            <h2>A Banda</h2>
+            <span class="badge">Estrutura</span>
         </div>
 
-        <!-- Painéis -->
-        <div class="band-panels">
+        <!-- Seletor (tabs) + conteúdo (sem cards dentro de cards) -->
+        <section class="band-tabs" data-tabs>
+            <div class="band-tabs-bar" role="tablist" aria-label="Estrutura da Banda">
+                <button class="band-tab" type="button" role="tab" id="tab-maestro" aria-selected="true"
+                        aria-controls="panel-maestro">
+                    🎼 Maestro
+                </button>
 
-          <!-- MAESTRO (layout tipo Presidente) -->
-          <div class="band-panel" role="tabpanel" id="panel-maestro" aria-labelledby="tab-maestro">
-            <div class="maestro-hero">
-              <div class="maestro-inner maestro-invert">
+                <button class="band-tab" type="button" role="tab" id="tab-musicos" aria-selected="false"
+                        aria-controls="panel-musicos">
+                    🎺 Músicos
+                </button>
 
-                <!-- Coluna esquerda (desktop): kicker + foto + assinatura -->
-                <aside class="maestro-profile" aria-label="Maestro">
-                  <div class="kicker">Direção Artística</div>
+                <button class="band-tab" type="button" role="tab" id="tab-escola" aria-selected="false"
+                        aria-controls="panel-escola">
+                    🎓 Escola
+                </button>
+            </div>
 
-                  <div class="maestro-photo" style="margin-top:10px;">
-                    <img src="assets/img/people/maestro.png" alt="Maestro Carlos Silva" loading="lazy">
-                  </div>
+            <!-- Painéis -->
+            <div class="band-panels">
 
-                  <div class="maestro-sign">
-                    <div class="role">Maestro</div>
-                    <div class="name">Carlos Silva</div>
-                  </div>
-                </aside>
+                <!-- MAESTRO (layout tipo Presidente) -->
+                <div class="band-panel" role="tabpanel" id="panel-maestro" aria-labelledby="tab-maestro">
+                    <div class="maestro-hero">
+                        <div class="maestro-inner maestro-invert">
 
-                <!-- Coluna direita (desktop): mensagem -->
-                <div class="maestro-copy">
+                            <!-- Coluna esquerda (desktop): kicker + foto + assinatura -->
+                            <aside class="maestro-profile" aria-label="Maestro">
+                                <div class="kicker">Direção Artística</div>
 
-                  <p class="maestro-text" style="margin-top:10px; text-align: justify;">
-                    Nasceu em Vila Cova da Lixa no ano de 1977, começou a tocar clarinete aos sete anos de idade na
-                    Banda de Música da Lixa, tendo mais tarde estudado no Conservatório de Música de Paredes, no
-                    Conservatório de Música do Porto e na Escola de Música do Conservatório Nacional em Lisboa, nas
-                    classes dos professores António Costa Santos, Moreira Jorge e Luís Gomes, respetivamente.
-                    Em 1996 ingressou na Banda Sinfónica da Guarda Nacional Republicana, transferindo-se para a Banda
-                    Marcial da GNR do Porto no ano de 2002. Atualmente, aufere o posto de Sargento-Chefe do quadro
-                    Honorífico/Músico da referida instituição e desempenha funções administrativas, execução, chefia e
-                    direção.
-                  </p>
+                                <div class="maestro-photo" style="margin-top:10px;">
+                                    <img src="assets/img/people/maestro.png" alt="Maestro Carlos Silva" loading="lazy">
+                                </div>
 
-                  <p class="maestro-text" style="margin-top:10px; text-align: justify;">
-                    Participou em Masterclass, com professores como: Joaquim Ribeiro, Luís Gomes, Nuno Silva, Carlos
-                    Alves e Rui Martins tendo trabalhado especialmente com Herman Stefansson - Solista da Filarmónica
-                    Real de Estocolmo, Guy Deplus – Solista da Ópera de Paris, entre outros. Integrou a Orquestra
-                    Lusíada (Lisboa) e tem sido convidado para efetuar concertos em diversas orquestras com destaque
-                    especial para a orquestra de gala da queima das fitas de Coimbra (2003), Orquestra “Sine Nomine”,
-                    Orquestra do Norte e OIDO (Orquestra Internacional de Diretores de Orquestra) tendo com isso
-                    oportunidade de trabalhar com maestros e solistas de renome internacional. Efetuou vários recitais
-                    pelo País e integra alguns grupos de câmara com destaque para o Quarteto de Clarinetes da “Banda
-                    Marcial da GNR do Porto” da Guarda Nacional Republicana e o Quarteto de Clarinetes do Conservatório
-                    do Vale do Sousa. Tem sido várias vezes convidado para integrar júris em concursos, festivais e
-                    orientar Masterclass.
-                  </p>
+                                <div class="maestro-sign">
+                                    <div class="role">Maestro</div>
+                                    <div class="name">Carlos Silva</div>
+                                </div>
+                            </aside>
 
-                  <p class="maestro-text" style="margin-top:10px; text-align: justify;">
-                    Com uma especial dedicação pela direção, orienta diversos grupos instrumentais e corais, tendo
-                    participado em vários cursos de direção de orquestra, de banda e de coro com reconhecidos maestros,
-                    tais como: Cesário Costa, Jacinto Montezo, Barbara Frank, Jorge Matta, Eugénio Amorim, Pedro
-                    Monteiro, Paulo Vassalo Lourenço, André Granjo, Ignacio Petit, Van der Roost, Jose Rafael Vilaplana,
-                    Ernst Schelle, Mark Heron, Francisco Navarro Lara, Rafael Agulló Albors, Frank De Vuyst, Alex
-                    Schilling, entre outros. Foi Maestro do Grupo Coral Cultural e Recreativo Polifidelis–Penafiel entre
-                    1996 a 2006 e Diretor Artístico da Banda Musical de Freamunde entre 2007 a 2021. É frequentemente
-                    convidado para dirigir diversos grupos corais e instrumentais nomeadamente orientação de estágios de
-                    orquestra e ações de formação. Concluiu a frequência do Nível Superior em Direção na Escuela de
-                    Dirección de Orquesta y Banda “Maestro Navarro Lara”. Foi co-autor de várias edições Best Seller com
-                    especial destaque para VADEMÉCUM del Director de Orquestra del Siglo XXI de Francisco Navarro Lara.
-                    No ano letivo 2023-24 frequentou o Nivel III da Academia Europeia de Direção de Banda (AEDB).
-                  </p>
+                            <!-- Coluna direita (desktop): mensagem -->
+                            <div class="maestro-copy">
 
-                  <p class="maestro-text" style="margin-top:10px; text-align: justify;">
-                    Em 2008, concluiu Licenciatura em Pedagogia do Instrumento (clarinete) na Escola das Artes da
-                    Universidade Católica Portuguesa, com elevada classificação, onde estudou com os professores Carlos
-                    Alves e António Rosa. Em 2010, concluiu Mestrado em Ensino da Música na Escola das Artes da
-                    Universidade Católica Portuguesa sob a orientação do Prof. Doutor José Abreu. Em 2019, concluiu o
-                    Mestrado em Música/Ramo Direção, no Departamento de Comunicação e Arte da Universidade de Aveiro sob
-                    a orientação do Prof. Doutor Evgueni Zoudilkine com elevada classificação.
-                  </p>
+                                <p class="maestro-text" style="margin-top:10px; text-align: justify;">
+                                    Nasceu em Vila Cova da Lixa no ano de 1977, começou a tocar clarinete aos sete anos
+                                    de idade na
+                                    Banda de Música da Lixa, tendo mais tarde estudado no Conservatório de Música de
+                                    Paredes, no
+                                    Conservatório de Música do Porto e na Escola de Música do Conservatório Nacional em
+                                    Lisboa, nas
+                                    classes dos professores António Costa Santos, Moreira Jorge e Luís Gomes,
+                                    respetivamente.
+                                    Em 1996 ingressou na Banda Sinfónica da Guarda Nacional Republicana, transferindo-se
+                                    para a Banda
+                                    Marcial da GNR do Porto no ano de 2002. Atualmente, aufere o posto de Sargento-Chefe
+                                    do quadro
+                                    Honorífico/Músico da referida instituição e desempenha funções administrativas,
+                                    execução, chefia e
+                                    direção.
+                                </p>
 
-                  <p class="maestro-text" style="margin-top:10px; text-align: justify;">
-                    Lecionou em várias escolas de música, nomeadamente no Conservatório de Música de Felgueiras e no
-                    Conservatório de Música de Basto. Foi professor/maestro da Orquestra de Sopros do Conservatório de
-                    Vale do Sousa (CVS) entre os anos letivos 2009/10 ao 2016/17, tendo obtido o 1º Prémio/2º Lugar na
-                    Categoria Académica no III CIB Filarmonia D’Ouro. Coadjuvou a coordenação de seis edições do Estágio
-                    de Orquestra de Sopros, organizado pelo Departamento de Sopros do CVS. Atualmente, leciona a
-                    disciplina de Clarinete no Conservatório de Vale de Sousa e é Diretor Artístico da Banda
-                    Cabeceirense.
-                  </p>
+                                <p class="maestro-text" style="margin-top:10px; text-align: justify;">
+                                    Participou em Masterclass, com professores como: Joaquim Ribeiro, Luís Gomes, Nuno
+                                    Silva, Carlos
+                                    Alves e Rui Martins tendo trabalhado especialmente com Herman Stefansson - Solista
+                                    da Filarmónica
+                                    Real de Estocolmo, Guy Deplus – Solista da Ópera de Paris, entre outros. Integrou a
+                                    Orquestra
+                                    Lusíada (Lisboa) e tem sido convidado para efetuar concertos em diversas orquestras
+                                    com destaque
+                                    especial para a orquestra de gala da queima das fitas de Coimbra (2003), Orquestra
+                                    “Sine Nomine”,
+                                    Orquestra do Norte e OIDO (Orquestra Internacional de Diretores de Orquestra) tendo
+                                    com isso
+                                    oportunidade de trabalhar com maestros e solistas de renome internacional. Efetuou
+                                    vários recitais
+                                    pelo País e integra alguns grupos de câmara com destaque para o Quarteto de
+                                    Clarinetes da “Banda
+                                    Marcial da GNR do Porto” da Guarda Nacional Republicana e o Quarteto de Clarinetes
+                                    do Conservatório
+                                    do Vale do Sousa. Tem sido várias vezes convidado para integrar júris em concursos,
+                                    festivais e
+                                    orientar Masterclass.
+                                </p>
+
+                                <p class="maestro-text" style="margin-top:10px; text-align: justify;">
+                                    Com uma especial dedicação pela direção, orienta diversos grupos instrumentais e
+                                    corais, tendo
+                                    participado em vários cursos de direção de orquestra, de banda e de coro com
+                                    reconhecidos maestros,
+                                    tais como: Cesário Costa, Jacinto Montezo, Barbara Frank, Jorge Matta, Eugénio
+                                    Amorim, Pedro
+                                    Monteiro, Paulo Vassalo Lourenço, André Granjo, Ignacio Petit, Van der Roost, Jose
+                                    Rafael Vilaplana,
+                                    Ernst Schelle, Mark Heron, Francisco Navarro Lara, Rafael Agulló Albors, Frank De
+                                    Vuyst, Alex
+                                    Schilling, entre outros. Foi Maestro do Grupo Coral Cultural e Recreativo
+                                    Polifidelis–Penafiel entre
+                                    1996 a 2006 e Diretor Artístico da Banda Musical de Freamunde entre 2007 a 2021. É
+                                    frequentemente
+                                    convidado para dirigir diversos grupos corais e instrumentais nomeadamente
+                                    orientação de estágios de
+                                    orquestra e ações de formação. Concluiu a frequência do Nível Superior em Direção na
+                                    Escuela de
+                                    Dirección de Orquesta y Banda “Maestro Navarro Lara”. Foi co-autor de várias edições
+                                    Best Seller com
+                                    especial destaque para VADEMÉCUM del Director de Orquestra del Siglo XXI de
+                                    Francisco Navarro Lara.
+                                    No ano letivo 2023-24 frequentou o Nivel III da Academia Europeia de Direção de
+                                    Banda (AEDB).
+                                </p>
+
+                                <p class="maestro-text" style="margin-top:10px; text-align: justify;">
+                                    Em 2008, concluiu Licenciatura em Pedagogia do Instrumento (clarinete) na Escola das
+                                    Artes da
+                                    Universidade Católica Portuguesa, com elevada classificação, onde estudou com os
+                                    professores Carlos
+                                    Alves e António Rosa. Em 2010, concluiu Mestrado em Ensino da Música na Escola das
+                                    Artes da
+                                    Universidade Católica Portuguesa sob a orientação do Prof. Doutor José Abreu. Em
+                                    2019, concluiu o
+                                    Mestrado em Música/Ramo Direção, no Departamento de Comunicação e Arte da
+                                    Universidade de Aveiro sob
+                                    a orientação do Prof. Doutor Evgueni Zoudilkine com elevada classificação.
+                                </p>
+
+                                <p class="maestro-text" style="margin-top:10px; text-align: justify;">
+                                    Lecionou em várias escolas de música, nomeadamente no Conservatório de Música de
+                                    Felgueiras e no
+                                    Conservatório de Música de Basto. Foi professor/maestro da Orquestra de Sopros do
+                                    Conservatório de
+                                    Vale do Sousa (CVS) entre os anos letivos 2009/10 ao 2016/17, tendo obtido o 1º
+                                    Prémio/2º Lugar na
+                                    Categoria Académica no III CIB Filarmonia D’Ouro. Coadjuvou a coordenação de seis
+                                    edições do Estágio
+                                    de Orquestra de Sopros, organizado pelo Departamento de Sopros do CVS. Atualmente,
+                                    leciona a
+                                    disciplina de Clarinete no Conservatório de Vale de Sousa e é Diretor Artístico da
+                                    Banda
+                                    Cabeceirense.
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+
+
                 </div>
 
-              </div>
-            </div>
+                <!-- MÚSICOS -->
+                <div class="band-panel" role="tabpanel" id="panel-musicos" aria-labelledby="tab-musicos" hidden>
+                    <!-- CARROSSEL (MÚSICOS) -->
+                    <div class="media-carousel" data-carousel aria-label="Galeria de imagens — Banda Cabeceirense">
+                        <div class="media-carousel-viewport">
+                            <div class="media-carousel-track" data-carousel-track>
+                                <figure class="media-carousel-item">
+                                    <img src="assets/img/musicos/musicos-00.jpg" alt="Banda Cabeceirense em atuação"
+                                         loading="lazy"
+                                         decoding="async">
+                                </figure>
+                                <figure class="media-carousel-item">
+                                    <img src="assets/img/musicos/musicos-01.png" alt="Banda Cabeceirense em concerto"
+                                         loading="lazy"
+                                         decoding="async">
+                                </figure>
+                                <figure class="media-carousel-item">
+                                    <img src="assets/img/musicos/musicos-02.png" alt="Músicos da Banda Cabeceirense"
+                                         loading="lazy"
+                                         decoding="async">
+                                </figure>
+                                <figure class="media-carousel-item">
+                                    <img src="assets/img/musicos/musicos-03.png" alt="Momento de atuação" loading="lazy"
+                                         decoding="async">
+                                </figure>
+                                <figure class="media-carousel-item">
+                                    <img src="assets/img/musicos/musicos-04.png" alt="Músicos em apresentação"
+                                         loading="lazy"
+                                         decoding="async">
+                                </figure>
+                                <figure class="media-carousel-item">
+                                    <img src="assets/img/musicos/musicos-05.png" alt="Banda Cabeceirense — detalhe"
+                                         loading="lazy"
+                                         decoding="async">
+                                </figure>
 
+                                <figure class="media-carousel-item">
+                                    <img src="assets/img/musicos/musicos-06.png" alt="Banda Cabeceirense — detalhe"
+                                         loading="lazy"
+                                         decoding="async">
+                                </figure>
+                                <figure class="media-carousel-item">
+                                    <img src="assets/img/musicos/musicos-07.jpg" alt="Banda Cabeceirense — detalhe"
+                                         loading="lazy"
+                                         decoding="async">
+                                </figure>
+                                <figure class="media-carousel-item">
+                                    <img src="assets/img/musicos/musicos-08.png" alt="Banda Cabeceirense — detalhe"
+                                         loading="lazy"
+                                         decoding="async">
+                                </figure>
+                                <figure class="media-carousel-item">
+                                    <img src="assets/img/musicos/musicos-09.png" alt="Banda Cabeceirense — detalhe"
+                                         loading="lazy"
+                                         decoding="async">
+                                </figure>
+                                <figure class="media-carousel-item">
+                                    <img src="assets/img/musicos/musicos-10.png" alt="Banda Cabeceirense — detalhe"
+                                         loading="lazy"
+                                         decoding="async">
+                                </figure>
 
-          </div>
+                                <figure class="media-carousel-item">
+                                    <img src="assets/img/musicos/musicos-11.png" alt="Banda Cabeceirense — detalhe"
+                                         loading="lazy"
+                                         decoding="async">
+                                </figure>
+                                <figure class="media-carousel-item">
+                                    <img src="assets/img/musicos/musicos-12.png" alt="Banda Cabeceirense — detalhe"
+                                         loading="lazy"
+                                         decoding="async">
+                                </figure>
+                                <figure class="media-carousel-item">
+                                    <img src="assets/img/musicos/musicos-13.png" alt="Banda Cabeceirense — detalhe"
+                                         loading="lazy"
+                                         decoding="async">
+                                </figure>
+                                <figure class="media-carousel-item">
+                                    <img src="assets/img/musicos/musicos-14.png" alt="Banda Cabeceirense — detalhe"
+                                         loading="lazy"
+                                         decoding="async">
+                                </figure>
+                                <figure class="media-carousel-item">
+                                    <img src="assets/img/musicos/musicos-15.png" alt="Banda Cabeceirense — detalhe"
+                                         loading="lazy"
+                                         decoding="async">
+                                </figure>
 
-          <!-- MÚSICOS -->
-          <div class="band-panel" role="tabpanel" id="panel-musicos" aria-labelledby="tab-musicos" hidden>
-            <!-- CARROSSEL (MÚSICOS) -->
-            <div class="media-carousel" data-carousel aria-label="Galeria de imagens — Banda Cabeceirense">
-              <div class="media-carousel-viewport">
-                <div class="media-carousel-track" data-carousel-track>
-                  <figure class="media-carousel-item">
-                    <img src="assets/img/musicos/musicos-00.jpg" alt="Banda Cabeceirense em atuação" loading="lazy"
-                      decoding="async">
-                  </figure>
-                  <figure class="media-carousel-item">
-                    <img src="assets/img/musicos/musicos-01.png" alt="Banda Cabeceirense em concerto" loading="lazy"
-                      decoding="async">
-                  </figure>
-                  <figure class="media-carousel-item">
-                    <img src="assets/img/musicos/musicos-02.png" alt="Músicos da Banda Cabeceirense" loading="lazy"
-                      decoding="async">
-                  </figure>
-                  <figure class="media-carousel-item">
-                    <img src="assets/img/musicos/musicos-03.png" alt="Momento de atuação" loading="lazy"
-                      decoding="async">
-                  </figure>
-                  <figure class="media-carousel-item">
-                    <img src="assets/img/musicos/musicos-04.png" alt="Músicos em apresentação" loading="lazy"
-                      decoding="async">
-                  </figure>
-                  <figure class="media-carousel-item">
-                    <img src="assets/img/musicos/musicos-05.png" alt="Banda Cabeceirense — detalhe" loading="lazy"
-                      decoding="async">
-                  </figure>
+                                <figure class="media-carousel-item">
+                                    <img src="assets/img/musicos/musicos-16.png" alt="Banda Cabeceirense — detalhe"
+                                         loading="lazy"
+                                         decoding="async">
+                                </figure>
+                                <figure class="media-carousel-item">
+                                    <img src="assets/img/musicos/musicos-17.png" alt="Banda Cabeceirense — detalhe"
+                                         loading="lazy"
+                                         decoding="async">
+                                </figure>
+                                <figure class="media-carousel-item">
+                                    <img src="assets/img/musicos/musicos-18.png" alt="Banda Cabeceirense — detalhe"
+                                         loading="lazy"
+                                         decoding="async">
+                                </figure>
+                                <figure class="media-carousel-item">
+                                    <img src="assets/img/musicos/musicos-19.png" alt="Banda Cabeceirense — detalhe"
+                                         loading="lazy"
+                                         decoding="async">
+                                </figure>
+                                <figure class="media-carousel-item">
+                                    <img src="assets/img/musicos/musicos-20.png" alt="Banda Cabeceirense — detalhe"
+                                         loading="lazy"
+                                         decoding="async">
+                                </figure>
 
-                  <figure class="media-carousel-item">
-                    <img src="assets/img/musicos/musicos-06.png" alt="Banda Cabeceirense — detalhe" loading="lazy"
-                      decoding="async">
-                  </figure>
-                  <figure class="media-carousel-item">
-                    <img src="assets/img/musicos/musicos-07.jpg" alt="Banda Cabeceirense — detalhe" loading="lazy"
-                      decoding="async">
-                  </figure>
-                  <figure class="media-carousel-item">
-                    <img src="assets/img/musicos/musicos-08.png" alt="Banda Cabeceirense — detalhe" loading="lazy"
-                      decoding="async">
-                  </figure>
-                  <figure class="media-carousel-item">
-                    <img src="assets/img/musicos/musicos-09.png" alt="Banda Cabeceirense — detalhe" loading="lazy"
-                      decoding="async">
-                  </figure>
-                  <figure class="media-carousel-item">
-                    <img src="assets/img/musicos/musicos-10.png" alt="Banda Cabeceirense — detalhe" loading="lazy"
-                      decoding="async">
-                  </figure>
+                                <figure class="media-carousel-item">
+                                    <img src="assets/img/musicos/musicos-21.png" alt="Banda Cabeceirense — detalhe"
+                                         loading="lazy"
+                                         decoding="async">
+                                </figure>
+                                <figure class="media-carousel-item">
+                                    <img src="assets/img/musicos/musicos-22.png" alt="Banda Cabeceirense — detalhe"
+                                         loading="lazy"
+                                         decoding="async">
+                                </figure>
+                                <figure class="media-carousel-item">
+                                    <img src="assets/img/musicos/musicos-23.jpg" alt="Banda Cabeceirense — detalhe"
+                                         loading="lazy"
+                                         decoding="async">
+                                </figure>
+                                <figure class="media-carousel-item">
+                                    <img src="assets/img/musicos/musicos-24.jpg" alt="Banda Cabeceirense — detalhe"
+                                         loading="lazy"
+                                         decoding="async">
+                                </figure>
+                            </div>
+                        </div>
 
-                  <figure class="media-carousel-item">
-                    <img src="assets/img/musicos/musicos-11.png" alt="Banda Cabeceirense — detalhe" loading="lazy"
-                      decoding="async">
-                  </figure>
-                  <figure class="media-carousel-item">
-                    <img src="assets/img/musicos/musicos-12.png" alt="Banda Cabeceirense — detalhe" loading="lazy"
-                      decoding="async">
-                  </figure>
-                  <figure class="media-carousel-item">
-                    <img src="assets/img/musicos/musicos-13.png" alt="Banda Cabeceirense — detalhe" loading="lazy"
-                      decoding="async">
-                  </figure>
-                  <figure class="media-carousel-item">
-                    <img src="assets/img/musicos/musicos-14.png" alt="Banda Cabeceirense — detalhe" loading="lazy"
-                      decoding="async">
-                  </figure>
-                  <figure class="media-carousel-item">
-                    <img src="assets/img/musicos/musicos-15.png" alt="Banda Cabeceirense — detalhe" loading="lazy"
-                      decoding="async">
-                  </figure>
+                        <button class="media-carousel-btn prev" type="button" data-carousel-prev
+                                aria-label="Imagem anterior">‹
+                        </button>
+                        <button class="media-carousel-btn next" type="button" data-carousel-next
+                                aria-label="Imagem seguinte">›
+                        </button>
 
-                  <figure class="media-carousel-item">
-                    <img src="assets/img/musicos/musicos-16.png" alt="Banda Cabeceirense — detalhe" loading="lazy"
-                      decoding="async">
-                  </figure>
-                  <figure class="media-carousel-item">
-                    <img src="assets/img/musicos/musicos-17.png" alt="Banda Cabeceirense — detalhe" loading="lazy"
-                      decoding="async">
-                  </figure>
-                  <figure class="media-carousel-item">
-                    <img src="assets/img/musicos/musicos-18.png" alt="Banda Cabeceirense — detalhe" loading="lazy"
-                      decoding="async">
-                  </figure>
-                  <figure class="media-carousel-item">
-                    <img src="assets/img/musicos/musicos-19.png" alt="Banda Cabeceirense — detalhe" loading="lazy"
-                      decoding="async">
-                  </figure>
-                  <figure class="media-carousel-item">
-                    <img src="assets/img/musicos/musicos-20.png" alt="Banda Cabeceirense — detalhe" loading="lazy"
-                      decoding="async">
-                  </figure>
+                        <div class="media-carousel-dots" data-carousel-dots aria-label="Selecionar imagem"></div>
+                    </div>
 
-                  <figure class="media-carousel-item">
-                    <img src="assets/img/musicos/musicos-21.png" alt="Banda Cabeceirense — detalhe" loading="lazy"
-                      decoding="async">
-                  </figure>
-                  <figure class="media-carousel-item">
-                    <img src="assets/img/musicos/musicos-22.png" alt="Banda Cabeceirense — detalhe" loading="lazy"
-                      decoding="async">
-                  </figure>
-                  <figure class="media-carousel-item">
-                    <img src="assets/img/musicos/musicos-23.jpg" alt="Banda Cabeceirense — detalhe" loading="lazy"
-                      decoding="async">
-                  </figure>
-                  <figure class="media-carousel-item">
-                    <img src="assets/img/musicos/musicos-24.jpg" alt="Banda Cabeceirense — detalhe" loading="lazy"
-                      decoding="async">
-                  </figure>
+                    <div class="page-hero" style="margin-top:14px;">
+                        <div class="kicker">Visão do maestro</div>
+                        <h3 style="margin-top:10px;">A herança filarmónica</h3>
+
+                        <p style="text-align: justify;">
+                            "A minha visão para a Banda Cabeceirense fundamenta-se na salvaguarda do seu património
+                            histórico,
+                            artístico e humano, reconhecendo o seu papel enquanto referência cultural do concelho de
+                            Cabeceiras de
+                            Basto. Entendo esta instituição como depositária de uma tradição filarmónica que importa
+                            preservar,
+                            dignificar e projetar no tempo.
+                        </p>
+                        <p style="text-align: justify;">
+                            A minha ação e contributo, como Diretor Artístico, vai no sentido para que a banda continue
+                            pautada pela
+                            excelência artística, pelo rigor interpretativo e pelo sentido de missão cultural, capaz de
+                            conjugar a
+                            herança do passado com uma visão de futuro sustentada, aberta à inovação e ao crescimento
+                            contínuo. O
+                            meu compromisso traduz-se na construção de um projeto artístico sólido, coeso e inclusivo,
+                            ao serviço da
+                            música, da comunidade e do prestígio da instituição."
+                        </p>
+                    </div>
+
+                    <div class="section" style="margin-top:18px;">
+                        <div class="section-head">
+                            <h2>Músicos</h2>
+                            <span class="badge">Plantel</span>
+                        </div>
+
+                        <div class="instrument-grid">
+                            <!-- 1) Flauta -->
+                            <article class="card instrument-card">
+                                <h4 class="instrument-title">Flauta</h4>
+                                <ul class="instrument-list">
+                                    <li>Lara Marques</li>
+                                    <li>Paula Lima</li>
+                                    <li>Sofia Pinheiro</li>
+                                </ul>
+                            </article>
+
+                            <!-- 2) Oboé -->
+                            <article class="card instrument-card">
+                                <h4 class="instrument-title">Oboé</h4>
+                                <ul class="instrument-list">
+                                    <li>Flávia Solange</li>
+                                    <li>Joana Palmas</li>
+                                    <li>Lara Matos</li>
+                                </ul>
+                            </article>
+
+                            <!-- 3) Clarinete -->
+                            <article class="card instrument-card">
+                                <h4 class="instrument-title">Clarinete</h4>
+                                <ul class="instrument-list">
+                                    <li>João Sousa</li>
+                                    <li>Gil Freitas</li>
+                                    <li>Marco Capelas</li>
+                                    <li>Inês Esteves</li>
+                                    <li>Carolina Carvalho</li>
+                                    <li>Orlando Freitas</li>
+                                    <li>Jorge Freitas</li>
+                                    <li>Margarida Teixeira</li>
+                                    <li>Miguel Gonzaga</li>
+                                    <li>Maria Lemos</li>
+                                    <li>Luís Pacheco</li>
+                                    <li>Rui Pedro Teixeira</li>
+                                    <li>Gabriela Leite</li>
+                                </ul>
+                            </article>
+
+                            <!-- 5) Saxofone Alto -->
+                            <article class="card instrument-card">
+                                <h4 class="instrument-title">Saxofone Alto</h4>
+                                <ul class="instrument-list">
+                                    <li>Beatriz Marques</li>
+                                    <li>Gonçalo Vilela</li>
+                                    <li>Tiago Magalhães</li>
+                                    <li>João Guilherme</li>
+                                    <li>Lara Machado</li>
+                                    <li>Rafael Cunha</li>
+                                    <li>António Teixeira</li>
+                                </ul>
+                            </article>
+
+                            <!-- 6) Saxofone Tenor -->
+                            <article class="card instrument-card">
+                                <h4 class="instrument-title">Saxofone Tenor</h4>
+                                <ul class="instrument-list">
+                                    <li>Liliana Freitas</li>
+                                    <li>Luís Rodrigues</li>
+                                    <li>Fernando Andrade</li>
+                                </ul>
+                            </article>
+
+                            <!-- 4) Clarinete Baixo -->
+                            <article class="card instrument-card">
+                                <h4 class="instrument-title">Clarinete Baixo</h4>
+                                <ul class="instrument-list">
+                                    <li>Luís Freitas</li>
+                                </ul>
+                            </article>
+
+                            <!-- 7) Euphonium -->
+                            <article class="card instrument-card">
+                                <h4 class="instrument-title">Eufónio</h4>
+                                <ul class="instrument-list">
+                                    <li>Luís Teixeira</li>
+                                </ul>
+                            </article>
+
+                            <!-- 8) Fagote -->
+                            <article class="card instrument-card">
+                                <h4 class="instrument-title">Fagote</h4>
+                                <ul class="instrument-list">
+                                    <li>Gabriela Ribeiro</li>
+                                </ul>
+                            </article>
+
+                            <!-- 9) Trompa -->
+                            <article class="card instrument-card">
+                                <h4 class="instrument-title">Trompa</h4>
+                                <ul class="instrument-list">
+                                    <li>Ana Beatriz Reis</li>
+                                    <li>Violeta Oliveira</li>
+                                    <li>Carolina Mota</li>
+                                    <li>João Carvalho</li>
+                                </ul>
+                            </article>
+
+                            <!-- 10) Trompete -->
+                            <article class="card instrument-card">
+                                <h4 class="instrument-title">Trompete</h4>
+                                <ul class="instrument-list">
+                                    <li>Marco Gonçalves</li>
+                                    <li>Cristiano Gonçalves</li>
+                                    <li>Rodrigo Cunha</li>
+                                    <li>Tiago Mucha</li>
+                                    <li>Marisa Baptista</li>
+                                    <li>Daniel Vilela</li>
+                                    <li>Pedro Leite</li>
+                                </ul>
+                            </article>
+
+                            <!-- 11) Trombone -->
+                            <article class="card instrument-card">
+                                <h4 class="instrument-title">Trombone</h4>
+                                <ul class="instrument-list">
+                                    <li>Luís Marques</li>
+                                    <li>André Oliveira</li>
+                                    <li>José Marques</li>
+                                    <li>João Moreira</li>
+                                    <li>Tiago Nunes</li>
+
+                                </ul>
+                            </article>
+
+                            <!-- 12) Tuba -->
+                            <article class="card instrument-card">
+                                <h4 class="instrument-title">Tuba</h4>
+                                <ul class="instrument-list">
+                                    <li>João Carlos</li>
+                                    <li>Alfredo Carvalho</li>
+                                    <li>Emanuel Silva</li>
+                                </ul>
+                            </article>
+
+                            <!-- 13) Percussão -->
+                            <article class="card instrument-card">
+                                <h4 class="instrument-title">Percussão</h4>
+                                <ul class="instrument-list">
+                                    <li>Paulo Pontes</li>
+                                    <li>Henrique Carneiro</li>
+                                    <li>Diogo Lopes</li>
+                                    <li>Adriano Freitas</li>
+                                    <li>Ivo Lobo</li>
+                                    <li>Pedro Coelho</li>
+                                </ul>
+                            </article>
+                        </div>
+                    </div>
                 </div>
-              </div>
 
-              <button class="media-carousel-btn prev" type="button" data-carousel-prev
-                aria-label="Imagem anterior">‹</button>
-              <button class="media-carousel-btn next" type="button" data-carousel-next
-                aria-label="Imagem seguinte">›</button>
+                <!-- ESCOLA -->
+                <div class="band-panel" role="tabpanel" id="panel-escola" aria-labelledby="tab-escola" hidden>
 
-              <div class="media-carousel-dots" data-carousel-dots aria-label="Selecionar imagem"></div>
-            </div>
-
-            <div class="page-hero" style="margin-top:14px;">
-              <div class="kicker">Visão do maestro</div>
-              <h3 style="margin-top:10px;">A herança filarmónica</h3>
-
-              <p style="text-align: justify;">
-                "A minha visão para a Banda Cabeceirense fundamenta-se na salvaguarda do seu património histórico,
-                artístico e humano, reconhecendo o seu papel enquanto referência cultural do concelho de Cabeceiras de
-                Basto. Entendo esta instituição como depositária de uma tradição filarmónica que importa preservar,
-                dignificar e projetar no tempo.
-              </p>
-              <p style="text-align: justify;">
-                A minha ação e contributo, como Diretor Artístico, vai no sentido para que a banda continue pautada pela
-                excelência artística, pelo rigor interpretativo e pelo sentido de missão cultural, capaz de conjugar a
-                herança do passado com uma visão de futuro sustentada, aberta à inovação e ao crescimento contínuo. O
-                meu compromisso traduz-se na construção de um projeto artístico sólido, coeso e inclusivo, ao serviço da
-                música, da comunidade e do prestígio da instituição."
-              </p>
-            </div>
-
-            <div class="section" style="margin-top:18px;">
-              <div class="section-head">
-                <h2>Músicos</h2>
-                <span class="badge">Plantel</span>
-              </div>
-
-              <div class="instrument-grid">
-                <!-- 1) Flauta -->
-                <article class="card instrument-card">
-                  <h4 class="instrument-title">Flauta</h4>
-                  <ul class="instrument-list">
-                    <li>Lara Marques</li>
-                    <li>Paula Lima</li>
-                    <li>Sofia Pinheiro</li>
-                  </ul>
-                </article>
-
-                <!-- 2) Oboé -->
-                <article class="card instrument-card">
-                  <h4 class="instrument-title">Oboé</h4>
-                  <ul class="instrument-list">
-                    <li>Flávia Solange</li>
-                    <li>Joana Palmas</li>
-                    <li>Lara Matos</li>
-                  </ul>
-                </article>
-
-                <!-- 3) Clarinete -->
-                <article class="card instrument-card">
-                  <h4 class="instrument-title">Clarinete</h4>
-                  <ul class="instrument-list">
-                    <li>João Sousa</li>
-                    <li>Gil Freitas</li>
-                    <li>Marco Capelas</li>
-                    <li>Inês Esteves</li>
-                    <li>Carolina Carvalho</li>
-                    <li>Orlando Freitas</li>
-                    <li>Jorge Freitas</li>
-                    <li>Margarida Teixeira</li>
-                    <li>Miguel Gonzaga</li>
-                    <li>Maria Lemos</li>
-                    <li>Luís Pacheco</li>
-                    <li>Rui Pedro Teixeira</li>
-                    <li>Gabriela Leite</li>
-                  </ul>
-                </article>
-
-                <!-- 5) Saxofone Alto -->
-                <article class="card instrument-card">
-                  <h4 class="instrument-title">Saxofone Alto</h4>
-                  <ul class="instrument-list">
-                    <li>Beatriz Marques</li>
-                    <li>Gonçalo Vilela</li>
-                    <li>Tiago Magalhães</li>
-                    <li>João Guilherme</li>
-                    <li>Lara Machado</li>
-                    <li>Rafael Cunha</li>
-                    <li>António Teixeira</li>
-                  </ul>
-                </article>
-
-                <!-- 6) Saxofone Tenor -->
-                <article class="card instrument-card">
-                  <h4 class="instrument-title">Saxofone Tenor</h4>
-                  <ul class="instrument-list">
-                    <li>Liliana Freitas</li>
-                    <li>Luís Rodrigues</li>
-                    <li>Fernando Andrade</li>
-                  </ul>
-                </article>
-
-                <!-- 4) Clarinete Baixo -->
-                <article class="card instrument-card">
-                  <h4 class="instrument-title">Clarinete Baixo</h4>
-                  <ul class="instrument-list">
-                    <li>Luís Freitas</li>
-                  </ul>
-                </article>
-
-                <!-- 7) Euphonium -->
-                <article class="card instrument-card">
-                  <h4 class="instrument-title">Eufónio</h4>
-                  <ul class="instrument-list">
-                    <li>Luís Teixeira</li>
-                  </ul>
-                </article>
-
-                <!-- 8) Fagote -->
-                <article class="card instrument-card">
-                  <h4 class="instrument-title">Fagote</h4>
-                  <ul class="instrument-list">
-                    <li>Gabriela Ribeiro</li>
-                  </ul>
-                </article>
-
-                <!-- 9) Trompa -->
-                <article class="card instrument-card">
-                  <h4 class="instrument-title">Trompa</h4>
-                  <ul class="instrument-list">
-                    <li>Ana Beatriz Reis</li>
-                    <li>Violeta Oliveira</li>
-                    <li>Carolina Mota</li>
-                    <li>João Carvalho</li>
-                  </ul>
-                </article>
-
-                <!-- 10) Trompete -->
-                <article class="card instrument-card">
-                  <h4 class="instrument-title">Trompete</h4>
-                  <ul class="instrument-list">
-                    <li>Marco Gonçalves</li>
-                    <li>Cristiano Gonçalves</li>
-                    <li>Rodrigo Cunha</li>
-                    <li>Tiago Mucha</li>
-                    <li>Marisa Baptista</li>
-                    <li>Daniel Vilela</li>
-                    <li>Pedro Leite</li>
-                  </ul>
-                </article>
-
-                <!-- 11) Trombone -->
-                <article class="card instrument-card">
-                  <h4 class="instrument-title">Trombone</h4>
-                  <ul class="instrument-list">
-                    <li>Luís Marques</li>
-                    <li>André Oliveira</li>
-                    <li>José Marques</li>
-                    <li>João Moreira</li>
-                    <li>Tiago Nunes</li>
-
-                  </ul>
-                </article>
-
-                <!-- 12) Tuba -->
-                <article class="card instrument-card">
-                  <h4 class="instrument-title">Tuba</h4>
-                  <ul class="instrument-list">
-                    <li>João Carlos</li>
-                    <li>Alfredo Carvalho</li>
-                    <li>Emanuel Silva</li>
-                  </ul>
-                </article>
-
-                <!-- 13) Percussão -->
-                <article class="card instrument-card">
-                  <h4 class="instrument-title">Percussão</h4>
-                  <ul class="instrument-list">
-                    <li>Paulo Pontes</li>
-                    <li>Henrique Carneiro</li>
-                    <li>Diogo Lopes</li>
-                    <li>Adriano Freitas</li>
-                    <li>Ivo Lobo</li>
-                    <li>Pedro Coelho</li>
-                  </ul>
-                </article>
-              </div>
-            </div>
-          </div>
-
-          <!-- ESCOLA -->
-          <div class="band-panel" role="tabpanel" id="panel-escola" aria-labelledby="tab-escola" hidden>
-
-            <!-- Banner / Foto de grupo -->
-            <figure class="school-hero">
-              <picture>
-                <source type="image/webp" srcset="
+                    <!-- Banner / Foto de grupo -->
+                    <figure class="school-hero">
+                        <picture>
+                            <source type="image/webp" srcset="
           assets/img/escola/escola-grupo-16x9-800.webp 800w,
           assets/img/escola/escola-grupo-16x9-1200.webp 1200w,
           assets/img/escola/escola-grupo-16x9-1600.webp 1600w
-        " sizes="(max-width: 980px) 100vw, 1100px" />
+        " sizes="(max-width: 980px) 100vw, 1100px"/>
 
-                <img src="assets/img/escola/escola-grupo-16x9-1600.jpg" srcset="
+                            <img src="assets/img/escola/escola-grupo-16x9-1600.jpg" srcset="
           assets/img/escola/escola-grupo-16x9-800.jpg 800w,
           assets/img/escola/escola-grupo-16x9-1200.jpg 1200w,
           assets/img/escola/escola-grupo-16x9-1600.jpg 1600w
         " sizes="(max-width: 980px) 100vw, 1100px" alt="Alunos e equipa da Escola de Música da Banda Cabeceirense"
-                  loading="lazy" decoding="async" />
-              </picture>
-            </figure>
+                                 loading="lazy" decoding="async"/>
+                        </picture>
+                    </figure>
 
-            <!-- Mensagem da Diretora -->
-            <div class="page-hero" style="margin-top:20px; text-align: justify;">
-              <div class="kicker">Escola</div>
-              <h3 style="margin-top:10px;">Mensagem da Diretora</h3>
+                    <!-- Mensagem da Diretora -->
+                    <div class="page-hero" style="margin-top:20px; text-align: justify;">
+                        <div class="kicker">Escola</div>
+                        <h3 style="margin-top:10px;">Mensagem da Diretora</h3>
 
-              <p style="margin-top:10px; text-align: justify;">
-                "A Escola da Banda Cabeceirense surge do propósito de dar a conhecer a música e o mundo filarmónico
-                tanto
-                aos mais novos como a todas as pessoas que queiram dar os primeiros passos na música.
-              </p>
-              <p style="margin-top:10px; text-align: justify;">
-                Semanalmente, a Casa da Música é repleta com melodias alegres e ritmos curiosos dos nossos aspirantes a
-                músicos. Contamos atualmente com mais de trinta alunos de diferentes idades e em diferentes fases de
-                aprendizagem, sendo que mais de metade, para além das aulas de formação musical, frequenta também aulas
-                de instrumento."
-              </p>
+                        <p style="margin-top:10px; text-align: justify;">
+                            "A Escola da Banda Cabeceirense surge do propósito de dar a conhecer a música e o mundo
+                            filarmónico
+                            tanto
+                            aos mais novos como a todas as pessoas que queiram dar os primeiros passos na música.
+                        </p>
+                        <p style="margin-top:10px; text-align: justify;">
+                            Semanalmente, a Casa da Música é repleta com melodias alegres e ritmos curiosos dos nossos
+                            aspirantes a
+                            músicos. Contamos atualmente com mais de trinta alunos de diferentes idades e em diferentes
+                            fases de
+                            aprendizagem, sendo que mais de metade, para além das aulas de formação musical, frequenta
+                            também aulas
+                            de instrumento."
+                        </p>
+                    </div>
+
+                    <!-- Inscreve-te já -->
+                    <section class="section" style="margin-top:16px;">
+                        <div class="section-head">
+                            <h2>Fale connosco</h2>
+                            <span class="badge">Escola de Música</span>
+                        </div>
+
+                        <div class="card" style="max-width: 90ch;">
+                            <p style="margin-top:0;">
+                                Para iniciar a inscrição, envie-nos uma mensagem com:
+                                <strong>Nome</strong>, <strong>Data de nascimento</strong> e <strong>Contacto
+                                telefónico</strong>.
+                            </p>
+
+                            <div class="grid" style="margin-top:12px;">
+                                <div class="card" style="padding:14px;">
+                                    <h3 style="margin:0;">O que enviar</h3>
+                                    <p style="margin-top:8px;">
+                                        Nome: ____<br>
+                                        Data de nascimento: ____<br>
+                                        Telefone: ____<br>
+                                        Observações (opcional): ____
+                                    </p>
+                                </div>
+
+                                <div class="card" style="padding:14px;">
+                                    <h3 style="margin:0;">Responderemos com</h3>
+                                    <p style="margin-top:8px;">
+                                        Confirmação de vaga, horários, instrumentos disponíveis e próximos passos.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="btn-row" style="margin-top:14px;">
+                                <!-- Troca o email -->
+                                <a class="btn btn-primary"
+                                   href="mailto:banda.filarmonica.cabeceirense@gmail.com?subject=Inscri%C3%A7%C3%A3o%20-%20Escola%20de%20M%C3%BAsica&body=Ol%C3%A1!%0A%0AGostaria%20de%20me%20inscrever%20na%20Escola%20de%20M%C3%BAsica%20da%20Banda%20Cabeceirense.%0A%0ANome:%20____%0AData%20de%20nascimento:%20____%0ATelefone:%20____%0AObserva%C3%A7%C3%B5es:%20____">
+                                    Enviar e-mail
+                                </a>
+
+                                <!-- Troca o número (formato: 3519XXXXXXXX) -->
+                                <a class="btn btn-outline"
+                                   href="https://wa.me/351962332330?text=Ol%C3%A1!%20Gostaria%20de%20me%20inscrever%20na%20Escola%20de%20M%C3%BAsica%20da%20Banda%20Cabeceirense.%0A%0ANome%3A%20____%0AData%20de%20nascimento%3A%20____%0ATelefone%3A%20____%0AObserva%C3%A7%C3%B5es%3A%20____"
+                                   target="_blank" rel="noopener">
+                                    WhatsApp
+                                </a>
+
+                                <!-- Troca o telefone -->
+                                <a class="btn btn-outline" href="tel:+351962332330">Ligar</a>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+
+
+            </div>
+        </section>
+
+    </div>
+</main>
+
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <img src="assets/img/logo_transparent_cropped.png" alt="Logotipo da Banda Cabeceirense">
+                <div>
+                    <strong>BANDA CABECEIRENSE</strong>
+                    <p>Cultura, formação e comunidade em Cabeceiras de Basto.</p>
+                </div>
             </div>
 
-            <!-- Inscreve-te já -->
-            <section class="section" style="margin-top:16px;">
-              <div class="section-head">
-                <h2>Fale connosco</h2>
-                <span class="badge">Escola de Música</span>
-              </div>
+            <div class="footer-col">
+                <h4>Links</h4>
+                <nav class="footer-links" aria-label="Links do site">
+                    <a href="historia.html">História</a>
+                    <a href="banda.html">Banda</a>
+                    <a href="direcao.html">Direção</a>
+                    <a href="calendario.html">Calendário</a>
+                    <a href="contactos.html">Contactos</a>
+                </nav>
+            </div>
 
-              <div class="card" style="max-width: 90ch;">
-                <p style="margin-top:0;">
-                  Para iniciar a inscrição, envie-nos uma mensagem com:
-                  <strong>Nome</strong>, <strong>Data de nascimento</strong> e <strong>Contacto telefónico</strong>.
-                </p>
+            <div class="footer-col">
+                <h4>Redes Sociais</h4>
+                <div class="footer-socials" aria-label="Redes sociais">
+                    <a class="social-btn" href="https://facebook.com/bandacabeceirense" target="_blank" rel="noopener"
+                       aria-label="Facebook">
+                        <span class="sr-only">Facebook</span>
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path
+                                    d="M13.5 22v-8h2.7l.4-3H13.5V9.1c0-.9.3-1.6 1.7-1.6h1.5V4.8c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.4-4 4V11H8v3h2.6v8h2.9z"/>
+                        </svg>
+                    </a>
 
-                <div class="grid" style="margin-top:12px;">
-                  <div class="card" style="padding:14px;">
-                    <h3 style="margin:0;">O que enviar</h3>
-                    <p style="margin-top:8px;">
-                      Nome: ____<br>
-                      Data de nascimento: ____<br>
-                      Telefone: ____<br>
-                      Observações (opcional): ____
-                    </p>
-                  </div>
+                    <a class="social-btn" href="https://instagram.com/bandacabeceirense" target="_blank" rel="noopener"
+                       aria-label="Instagram">
+                        <span class="sr-only">Instagram</span>
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path
+                                    d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-5 4.2A3.8 3.8 0 1 1 8.2 12 3.8 3.8 0 0 1 12 8.2zm0 2A1.8 1.8 0 1 0 13.8 12 1.8 1.8 0 0 0 12 10.2zM17.7 6.1a.9.9 0 1 1-.9.9.9.9 0 0 1 .9-.9z"/>
+                        </svg>
+                    </a>
 
-                  <div class="card" style="padding:14px;">
-                    <h3 style="margin:0;">Responderemos com</h3>
-                    <p style="margin-top:8px;">
-                      Confirmação de vaga, horários, instrumentos disponíveis e próximos passos.
-                    </p>
-                  </div>
+                    <a class="social-btn" href="https://youtube.com/@bandacabeceirense" target="_blank" rel="noopener"
+                       aria-label="YouTube">
+                        <span class="sr-only">YouTube</span>
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path
+                                    d="M21.6 7.2a3 3 0 0 0-2.1-2.1C17.7 4.6 12 4.6 12 4.6s-5.7 0-7.5.5A3 3 0 0 0 2.4 7.2 31 31 0 0 0 2 12a31 31 0 0 0 .4 4.8 3 3 0 0 0 2.1 2.1c1.8.5 7.5.5 7.5.5s5.7 0 7.5-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 22 12a31 31 0 0 0-.4-4.8zM10.2 15.3V8.7L15.9 12l-5.7 3.3z"/>
+                        </svg>
+                    </a>
                 </div>
-
-                <div class="btn-row" style="margin-top:14px;">
-                  <!-- Troca o email -->
-                  <a class="btn btn-primary"
-                    href="mailto:escola@bandacabeceirense.pt?subject=Inscri%C3%A7%C3%A3o%20-%20Escola%20de%20M%C3%BAsica&body=Ol%C3%A1!%0A%0AGostaria%20de%20me%20inscrever%20na%20Escola%20de%20M%C3%BAsica%20da%20Banda%20Cabeceirense.%0A%0ANome:%20____%0AData%20de%20nascimento:%20____%0ATelefone:%20____%0AObserva%C3%A7%C3%B5es:%20____">
-                    Enviar e-mail
-                  </a>
-
-                  <!-- Troca o número (formato: 3519XXXXXXXX) -->
-                  <a class="btn btn-outline"
-                    href="https://wa.me/3519XXXXXXXX?text=Ol%C3%A1!%20Gostaria%20de%20me%20inscrever%20na%20Escola%20de%20M%C3%BAsica%20da%20Banda%20Cabeceirense.%0A%0ANome%3A%20____%0AData%20de%20nascimento%3A%20____%0ATelefone%3A%20____%0AObserva%C3%A7%C3%B5es%3A%20____"
-                    target="_blank" rel="noopener">
-                    WhatsApp
-                  </a>
-
-                  <!-- Troca o telefone -->
-                  <a class="btn btn-outline" href="tel:+3519XXXXXXXX">Ligar</a>
-                </div>
-              </div>
-            </section>
-
-          </div>
-
-
+            </div>
         </div>
-      </section>
 
+        <div class="footer-bottom">
+            <div>© <span id="y"></span> Banda Cabeceirense · Todos os direitos reservados</div>
+            <div>
+                Desenvolvido por
+                <a href="https://github.com/devotion-labs" target="_blank" rel="noopener">DEVOTION</a>
+            </div>
+        </div>
     </div>
-  </main>
-
-
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-inner">
-        <div class="footer-brand">
-          <img src="assets/img/logo_transparent_cropped.png" alt="Logotipo da Banda Cabeceirense">
-          <div>
-            <strong>BANDA CABECEIRENSE</strong>
-            <p>Cultura, formação e comunidade em Cabeceiras de Basto.</p>
-          </div>
-        </div>
-
-        <div class="footer-col">
-          <h4>Links</h4>
-          <nav class="footer-links" aria-label="Links do site">
-            <a href="historia.html">História</a>
-            <a href="banda.html">Banda</a>
-            <a href="direcao.html">Direção</a>
-            <a href="calendario.html">Calendário</a>
-            <a href="contactos.html">Contactos</a>
-          </nav>
-        </div>
-
-        <div class="footer-col">
-          <h4>Redes Sociais</h4>
-          <div class="footer-socials" aria-label="Redes sociais">
-            <a class="social-btn" href="https://facebook.com/bandacabeceirense" target="_blank" rel="noopener"
-              aria-label="Facebook">
-              <span class="sr-only">Facebook</span>
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                  d="M13.5 22v-8h2.7l.4-3H13.5V9.1c0-.9.3-1.6 1.7-1.6h1.5V4.8c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.4-4 4V11H8v3h2.6v8h2.9z" />
-              </svg>
-            </a>
-
-            <a class="social-btn" href="https://instagram.com/bandacabeceirense" target="_blank" rel="noopener"
-              aria-label="Instagram">
-              <span class="sr-only">Instagram</span>
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                  d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-5 4.2A3.8 3.8 0 1 1 8.2 12 3.8 3.8 0 0 1 12 8.2zm0 2A1.8 1.8 0 1 0 13.8 12 1.8 1.8 0 0 0 12 10.2zM17.7 6.1a.9.9 0 1 1-.9.9.9.9 0 0 1 .9-.9z" />
-              </svg>
-            </a>
-
-            <a class="social-btn" href="https://youtube.com/@bandacabeceirense" target="_blank" rel="noopener"
-              aria-label="YouTube">
-              <span class="sr-only">YouTube</span>
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                  d="M21.6 7.2a3 3 0 0 0-2.1-2.1C17.7 4.6 12 4.6 12 4.6s-5.7 0-7.5.5A3 3 0 0 0 2.4 7.2 31 31 0 0 0 2 12a31 31 0 0 0 .4 4.8 3 3 0 0 0 2.1 2.1c1.8.5 7.5.5 7.5.5s5.7 0 7.5-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 22 12a31 31 0 0 0-.4-4.8zM10.2 15.3V8.7L15.9 12l-5.7 3.3z" />
-              </svg>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        <div>© <span id="y"></span> Banda Cabeceirense · Todos os direitos reservados</div>
-        <div>
-          Desenvolvido por
-          <a href="https://github.com/devotion-labs" target="_blank" rel="noopener">DEVOTION</a>
-        </div>
-      </div>
-    </div>
-  </footer>
+</footer>
 
 </body>
 
